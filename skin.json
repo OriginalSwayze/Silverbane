@@ -1,0 +1,417 @@
+{
+    "name": "Silverbane",
+    "author": "OriginalSwayze",
+    "description": "A dark-fantasy grimoire for Steam: gilt-framed pages over a candlelit night of drifting fog and rising embers, serif small caps, a blood-red Play seal with a turning sigil, and a prologue when Steam opens.",
+    "version": "1.0.0",
+    "tags": [
+        "Fantasy",
+        "Medieval",
+        "Dark",
+        "Animated",
+        "Serif"
+    ],
+    "header_image": "https://raw.githubusercontent.com/OriginalSwayze/Silverbane/main/media/library.gif",
+    "splash_image": "https://raw.githubusercontent.com/OriginalSwayze/Silverbane/main/media/gamepage.png",
+    "github": {
+        "owner": "OriginalSwayze",
+        "repo_name": "Silverbane"
+    },
+    "RootColors": "root-colors.css",
+    "Steam-WebKit": "webkit.css",
+    "Conditions": {
+        "Palette": {
+            "description": "The colors of the realm: Silver (silver, old gold, dried blood), Ember, Frost, Grove, Bloodmoon, or your own.",
+            "tab": "Look",
+            "default": "Silver",
+            "values": {
+                "Silver": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/presets/silver.css"
+                    }
+                },
+                "Ember": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/presets/ember.css"
+                    }
+                },
+                "Frost": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/presets/frost.css"
+                    }
+                },
+                "Grove": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/presets/grove.css"
+                    }
+                },
+                "Bloodmoon": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/presets/bloodmoon.css"
+                    }
+                },
+                "Custom": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/presets/custom.css"
+                    }
+                }
+            }
+        },
+        "Night": {
+            "description": "Behind the pages. Living: fog drifts and embers rise. Still: the same, frozen. Moonless: plain black.",
+            "tab": "Look",
+            "default": "Living",
+            "values": {
+                "Living": {},
+                "Still": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/backdrop-static.css"
+                    }
+                },
+                "Moonless": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/backdrop-void.css"
+                    }
+                }
+            }
+        },
+        "Fog": {
+            "description": "The banks of fog along the bottom of the window.",
+            "tab": "Look",
+            "default": "On",
+            "values": {
+                "On": {},
+                "Off": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/fog-off.css"
+                    }
+                }
+            }
+        },
+        "Embers": {
+            "description": "Embers rising from below.",
+            "tab": "Look",
+            "default": "Few",
+            "values": {
+                "Few": {},
+                "Many": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/embers-more.css"
+                    }
+                },
+                "None": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/embers-off.css"
+                    }
+                }
+            }
+        },
+        "Gilded frames": {
+            "description": "Gold corner brackets on panels, buttons and menus.",
+            "tab": "Look",
+            "default": "On",
+            "values": {
+                "On": {},
+                "Off": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/frames-off.css"
+                    }
+                }
+            }
+        },
+        "Corner radius": {
+            "description": "A little rounding on panels and buttons.",
+            "tab": "Look",
+            "default": 2,
+            "slider": {
+                "cssVariable": "--mr-setting-radius",
+                "min": 0,
+                "max": 12,
+                "step": 1,
+                "unit": "px"
+            }
+        },
+        "Page opacity": {
+            "description": "How solid the pages are: lower shows more of the night.",
+            "tab": "Look",
+            "default": 86,
+            "slider": {
+                "cssVariable": "--mr-setting-tint",
+                "min": 30,
+                "max": 100,
+                "step": 5,
+                "unit": "%"
+            }
+        },
+        "Page blur": {
+            "description": "Frost behind the pages.",
+            "tab": "Look",
+            "default": 6,
+            "slider": {
+                "cssVariable": "--mr-setting-blur",
+                "min": 0,
+                "max": 40,
+                "step": 2,
+                "unit": "px"
+            }
+        },
+        "Layout": {
+            "description": "Framed: pages float with gaps. Seamless: edge to edge.",
+            "tab": "Layout",
+            "default": "Framed",
+            "values": {
+                "Framed": {},
+                "Seamless": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/layout-seamless.css"
+                    }
+                }
+            }
+        },
+        "Navigator": {
+            "description": "Where Store / Library / Community sit.",
+            "tab": "Layout",
+            "default": "Center",
+            "values": {
+                "Center": {},
+                "Left": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/nav-left.css"
+                    }
+                }
+            }
+        },
+        "Game list density": {
+            "description": "Row size in the game list.",
+            "tab": "Layout",
+            "default": "Comfortable",
+            "values": {
+                "Comfortable": {},
+                "Compact": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/list-compact.css"
+                    }
+                }
+            }
+        },
+        "What's New shelf": {
+            "description": "The What's New carousel on the library home.",
+            "tab": "Layout",
+            "default": "Show",
+            "values": {
+                "Show": {},
+                "Hide": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/hide-whats-new.css"
+                    }
+                }
+            }
+        },
+        "Dock labels": {
+            "description": "Labels on the dock buttons: on hover, or always.",
+            "tab": "Layout",
+            "default": "On hover",
+            "values": {
+                "On hover": {},
+                "Always": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/dock-labels.css"
+                    }
+                }
+            }
+        },
+        "Hour of the day": {
+            "description": "The time and the hour (\"dusk\", \"nightfall\"...) beside the menus.",
+            "tab": "Layout",
+            "default": "On",
+            "values": {
+                "On": {},
+                "Off": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/hour-off.css"
+                    }
+                }
+            }
+        },
+        "Prologue": {
+            "description": "The title page shown when the Steam window first opens.",
+            "tab": "Motion",
+            "default": "On",
+            "values": {
+                "On": {},
+                "Off": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/boot-off.css"
+                    }
+                }
+            }
+        },
+        "Motion": {
+            "description": "Full: everything. Calm: hovers only, the night stands still. Still: no theme motion at all.",
+            "tab": "Motion",
+            "default": "Full",
+            "values": {
+                "Full": {},
+                "Calm": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/motion-calm.css"
+                    }
+                },
+                "Still": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/motion-still.css"
+                    }
+                }
+            }
+        },
+        "Cover hover": {
+            "description": "Library covers under the cursor. Tilt: 3D with candlelight. Lift: rise. Off: nothing.",
+            "tab": "Motion",
+            "default": "Tilt",
+            "values": {
+                "Tilt": {},
+                "Lift": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/covers-lift.css"
+                    }
+                },
+                "Off": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/covers-off.css"
+                    }
+                }
+            }
+        },
+        "Cursor light": {
+            "description": "A warm candle glow that follows the cursor across the pages.",
+            "tab": "Motion",
+            "default": "On",
+            "values": {
+                "On": {},
+                "Off": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/cursor-light-off.css"
+                    }
+                }
+            }
+        },
+        "Privacy": {
+            "description": "Blur your account name and wallet until hovered.",
+            "tab": "Extras",
+            "default": "Off",
+            "values": {
+                "Off": {},
+                "Blur": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/privacy.css"
+                    }
+                }
+            }
+        }
+    },
+    "Patches": [
+        {
+            "MatchRegexString": "^Steam$",
+            "TargetCss": "main.css",
+            "TargetJs": "js/main.js"
+        },
+        {
+            "MatchRegexString": ".ModalDialogPopup",
+            "TargetCss": "main.css"
+        },
+        {
+            "MatchRegexString": ".FullModalOverlay",
+            "TargetCss": "main.css"
+        },
+        {
+            "MatchRegexString": ".friendsui-container",
+            "TargetCss": "friends.css"
+        },
+        {
+            "MatchRegexString": ".ContextMenuPopup",
+            "TargetCss": "popup.css"
+        },
+        {
+            "MatchRegexString": ".DesktopToastContainer",
+            "TargetCss": "toast.css"
+        },
+        {
+            "MatchRegexString": "^Sign in to Steam$",
+            "TargetCss": "login.css"
+        }
+    ]
+}

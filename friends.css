@@ -1,0 +1,234 @@
+/* SILVERBANE — friends list and chat windows. */
+@import url("./core/tokens.css");
+@import url("./core/base.css");
+@import url("./core/backdrop.css");
+@import url("./client/controls.css");
+@import url("./client/realm-controls.css");
+
+html .friendsui-container,
+html .friendsui-container .FriendsListAndChatsSteamDeck,
+html .friendsListContainer,
+html .friendlist,
+html .chatWindow,
+html .ChatRoomList,
+html .chatTabSetContainer,
+html .chatTabSet,
+html .chatDialogs,
+html .ChatRoomGroupDialog_container,
+html .friendListHeaderContainer,
+html .FriendsListChatSection {
+    background: transparent !important;
+}
+
+/* Title bar */
+html .friendsui-container .title-area,
+html .friendsui-container .TitleBar { background: transparent !important; }
+
+/* ---- You (top card) ------------------------------------------------------ */
+html .currentUserContainer {
+    margin: 8px !important;
+    padding: 8px !important;
+    border-radius: var(--mr-r) !important;
+    background: var(--mr-glass) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+    box-shadow: var(--mr-glass-edge), var(--mr-shadow-1);
+}
+html .currentUserContainer .statusHeaderGlow { display: none !important; }
+html .currentUserContainer .playerName {
+    font-family: var(--mr-font-display) !important;
+    font-weight: 700 !important;
+    background: var(--mr-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+
+/* ---- Avatars: round, with a status ring instead of Steam's side strip -- */
+html .avatarHolder img.avatar,
+html .avatarHolder .avatar {
+    border-radius: 50% !important;
+}
+html .avatarHolder .avatarStatus { display: none !important; }
+html .avatarHolder.online img.avatar  { box-shadow: 0 0 0 2px var(--mr-info); }
+html .avatarHolder.ingame img.avatar  { box-shadow: 0 0 0 2px var(--mr-ok), 0 0 12px -2px var(--mr-ok); }
+html .avatarHolder.awayOrSnooze img.avatar { box-shadow: 0 0 0 2px var(--mr-warn); opacity: 0.8; }
+html .avatarHolder.offline img.avatar { filter: grayscale(1); opacity: 0.55; }
+
+/* ---- Groups and rows --------------------------------------------------- */
+html .friendGroup .groupName {
+    font-family: var(--mr-font-display) !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    color: var(--mr-fg-3) !important;
+    background: transparent !important;
+}
+html .friendGroup .groupName .groupCount { font-family: var(--mr-font-mono); color: var(--mr-fg-4) !important; }
+html .friendGroup .groupName hr { background: var(--mr-line) !important; border: none !important; height: 1px; }
+
+html .friend {
+    margin: 1px 6px !important;
+    border-radius: var(--mr-r-md) !important;
+    background: transparent !important;
+    transition: background-color var(--mr-t-1), transform var(--mr-t-2) var(--mr-ease);
+}
+html .friend:hover {
+    background: var(--mr-hover) !important;
+    transform: translateX(calc(2px * var(--mr-motion)));
+}
+html .friend .playerName { color: var(--mr-fg) !important; font-weight: 600 !important; }
+html .friend.ingame .playerName,
+html .friend.ingame .richPresenceLabel,
+html .friend.ingame .gameName { color: var(--mr-ok) !important; }
+html .friend.offline .playerName { color: var(--mr-fg-4) !important; }
+html .friend .richPresenceLabel { color: var(--mr-fg-3) !important; }
+
+/* Search */
+html .friendListHeaderContainer input,
+html .FriendSearch input {
+    border-radius: var(--mr-r-pill) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--mr-line) !important;
+}
+
+/* ---- Chat ------------------------------------------------------------- */
+html .ChatTabs .ChatTab,
+html .chatTab {
+    border-radius: var(--mr-r-md) var(--mr-r-md) 0 0 !important;
+    transition: background-color var(--mr-t-1);
+}
+html .ChatTabs .ChatTab:hover, html .chatTab:hover { background: var(--mr-hover) !important; }
+html .chatTab.chatTabSelected,
+html .ChatTabs .ChatTab.Active {
+    background: var(--mr-grad-soft) !important;
+    box-shadow: inset 0 -2px 0 var(--mr-a);
+}
+html .ChatMessageEntry,
+html .chatentry_chatTextarea,
+html textarea.chatentry_chatTextarea {
+    border-radius: var(--mr-r) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--mr-line) !important;
+}
+html .chatentry_chatSubmitButton,
+html .chatSubmitButton {
+    border-radius: 50% !important;
+    background: var(--mr-grad) !important;
+    color: var(--mr-on-accent) !important;
+}
+html .msg .speaker .playerName { font-weight: 700 !important; }
+html .ChatMessageBlock { animation: mr-fade-up var(--mr-t-3) var(--mr-ease) backwards; }
+
+/* ===== SILVERBANE: friends window surfaces Steam paints itself ===== */
+html .title-area-highlight,
+html .FriendListInsetShadowTop,
+html .FriendListInsetShadowBottom { display: none !important; }
+
+html .friendlistListContainer,
+html .friendGroup,
+html .friendGroup.offlineFriends,
+html .chatRoomListContainer,
+html .friendlist,
+html .titleBarContainer {
+    background: transparent !important;
+}
+
+/* Section bars: "FRIENDS" tab and "GROUP CHATS" header */
+html .friendTab,
+html .socialListTab,
+html .chatSectionTitle,
+html .friendsListSectionTitle {
+    background: linear-gradient(90deg, var(--od-1-10), transparent 70%) !important;
+    border: none !important;
+    box-shadow: inset 0 -1px 0 var(--mr-line-2), inset 3px 0 0 var(--od-1) !important;
+    color: var(--mr-fg) !important;
+    font-family: var(--mr-font-display) !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+}
+html .friendTab.activeTab { color: var(--od-1) !important; text-shadow: var(--od-text-neon); }
+html :is(.friendTab, .chatSectionTitle) svg,
+html :is(.friendTab, .chatSectionTitle) svg path { fill: var(--od-2) !important; }
+html :is(.friendTab, .chatSectionTitle) :is(button, [class*="Button"]):hover svg path { fill: var(--od-1) !important; }
+
+/* Footer strip */
+html .friendListFooter {
+    background: transparent !important;
+    border-top: 1px solid var(--mr-line) !important;
+}
+
+/* Quick-access drop zone + its dismiss button */
+html .emptyQuickAccess,
+html .DropTarget.emptyQuickAccess {
+    border-radius: 0 !important;
+    border-color: var(--od-2-40) !important;
+    background: var(--od-2-10) !important;
+}
+html .quickAccessFriendsMessageDismiss {
+    border-radius: 0 !important;
+    background: var(--od-1) !important;
+    color: var(--od-ink) !important;
+    clip-path: var(--od-chamfer-sm);
+}
+
+/* Group titles: no "//" prefix in this window, it collides with Steam's expander */
+html .friendGroup .groupName::before { content: none !important; }
+
+/* Offline friends: dimmed, but readable */
+html .friend.offline .playerName,
+html .friendGroup.offlineFriends .playerName { color: var(--mr-fg-2) !important; }
+html .friendGroup.offlineFriends .richPresenceLabel,
+html .friend.offline .richPresenceLabel { color: var(--mr-fg-3) !important; }
+html .avatarHolder.offline img.avatar { filter: grayscale(1) !important; opacity: 0.75 !important; }
+html .friend:hover .playerName { color: var(--od-2) !important; }
+
+/* ===== SILVERBANE companions ===== */
+html .currentUserContainer {
+    --sb-c: 10px;
+    border-radius: 0 !important;
+    clip-path: none !important;
+    background: var(--sb-frame), var(--mr-glass) !important;
+}
+html .currentUserContainer .playerName {
+    background: none !important;
+    color: var(--sb-parch) !important;
+    -webkit-text-fill-color: var(--sb-parch);
+    font-family: var(--sb-serif) !important;
+    font-variant: small-caps;
+    font-size: 17px !important;
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 14px color-mix(in srgb, #FFB347 30%, transparent);
+}
+html .avatarHolder img.avatar, html .avatarHolder .avatar { border-radius: 50% !important; clip-path: none !important; }
+html .avatarHolder.online img.avatar { box-shadow: 0 0 0 1px var(--sb-silver); }
+html .avatarHolder.ingame img.avatar { box-shadow: 0 0 0 1px var(--mr-ok), 0 0 10px -2px var(--mr-ok); }
+html .friendTab, html .socialListTab, html .chatSectionTitle, html .friendsListSectionTitle {
+    background: var(--sb-rule) 0 100% / 100% 1px no-repeat, transparent !important;
+    box-shadow: none !important;
+    font-family: var(--sb-serif) !important;
+    font-variant: small-caps;
+    font-size: 15px !important;
+    letter-spacing: 0.1em !important;
+    text-transform: none !important;
+}
+html .friendTab.activeTab { color: var(--sb-parch) !important; text-shadow: 0 0 12px color-mix(in srgb, #FFB347 30%, transparent); }
+html :is(.friendTab, .chatSectionTitle) svg, html :is(.friendTab, .chatSectionTitle) svg path { fill: var(--sb-gold) !important; }
+html .friendGroup .groupName {
+    font-family: var(--sb-serif) !important;
+    font-variant: small-caps;
+    font-size: 14px !important;
+    letter-spacing: 0.08em !important;
+    text-transform: none !important;
+    color: var(--sb-gold) !important;
+}
+html .friend { border-radius: 0 !important; }
+html .friend:hover { background: linear-gradient(90deg, var(--sb-silver-08), transparent) !important; box-shadow: none; }
+html .friend:hover .playerName { color: var(--sb-parch) !important; }
+html .emptyQuickAccess, html .DropTarget.emptyQuickAccess { border-color: var(--sb-gold-35) !important; background: transparent !important; font-family: var(--sb-serif); font-style: italic; }
+html .quickAccessFriendsMessageDismiss { background: var(--sb-blood) !important; color: var(--sb-parch) !important; clip-path: none !important; }
+html .chatTab.chatTabSelected, html .ChatTabs .ChatTab.Active { background: var(--sb-blood-30) !important; box-shadow: inset 0 -1px 0 var(--sb-gold); }
+html .ChatMessageEntry, html textarea.chatentry_chatTextarea { border-radius: 0 !important; }
+html .chatentry_chatSubmitButton, html .chatSubmitButton { border-radius: 0 !important; background: var(--sb-blood) !important; clip-path: none !important; }

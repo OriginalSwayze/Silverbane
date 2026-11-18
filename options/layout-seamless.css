@@ -1,0 +1,9 @@
+/* Layout: Seamless — edge-to-edge panels, no gaps, no floating */
+html .Library > .Container { padding: 0 0 68px 0 !important; gap: 0 !important; }
+html .Library > .Container > div:not(.MainPanel),
+html .MainPanel {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+html .Library > .Container > div:not(.MainPanel) { border-right: 1px solid var(--mr-line) !important; }
+html .OuterFrame > .TopBar { border-bottom: 1px solid var(--mr-line) !important; }

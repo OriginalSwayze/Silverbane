@@ -1,0 +1,742 @@
+/* ==========================================================================
+   SILVERBANE — Store and Community pages inside the client.
+   These are separate web documents, so the foundation is imported again.
+   Valve's page layouts stay; Silverbane repaints them: the city behind,
+   HUD blocks, neon purchase buttons, cut-corner media.
+   ========================================================================== */
+@import url("./core/tokens.css");
+@import url("./core/base.css");
+@import url("./core/backdrop.css");
+
+/* ---- Canvas ------------------------------------------------------------- */
+html body,
+body.v6,
+body.v7,
+body.flat_page,
+.responsive_page_frame,
+.responsive_page_content,
+.responsive_page_template_content,
+.page_content_ctn,
+.home_page_body_ctn,
+.home_page_content,
+.game_page_background,
+.game_page_background.game,
+.page_background_holder,
+.store_page_bg,
+#store_header,
+.store_header_btn_gray,
+.home_page_gutter,
+.search_page,
+#search_results,
+.profile_page,
+.profile_content,
+.apphub_background,
+.pagecontent,
+.maincontent {
+    background-color: transparent !important;
+}
+.game_page_background { background-image: none !important; }
+.game_background_glow,
+.home_page_body_ctn.has_takeover::before,
+.page_background_holder { opacity: 0.25; }
+
+body,
+body.v6,
+body.v7 {
+    font-family: var(--mr-font) !important;
+    color: var(--mr-fg-2);
+}
+h1, h2, .pageheader, .apphub_AppName, #appHubAppName, .home_page_content h2,
+.home_section_title, .page_title_area .pageheader {
+    font-family: var(--mr-font-display) !important;
+    letter-spacing: -0.01em !important;
+    text-transform: none !important;
+    color: var(--mr-fg) !important;
+}
+a { transition: color var(--mr-t-1); }
+a:hover { color: var(--mr-accent-text) !important; }
+
+/* ---- Store navigation bar --------------------------------------------- */
+#store_nav_area .store_nav_bg,
+.store_nav_bg {
+    background: var(--mr-glass-strong) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+    border-radius: var(--mr-r-pill) !important;
+    box-shadow: var(--mr-glass-edge), var(--mr-shadow-2) !important;
+}
+#store_nav_area .store_nav .tab,
+.store_nav .tab {
+    border-radius: var(--mr-r-pill) !important;
+    background: transparent !important;
+    transition: background-color var(--mr-t-1);
+}
+.store_nav .tab:hover,
+.store_nav .tab.focus { background: var(--mr-hover) !important; }
+.store_nav .tab > span { color: var(--mr-fg-2) !important; text-transform: none !important; font-weight: 600; }
+#store_search,
+.searchbox {
+    border-radius: var(--mr-r-pill) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid var(--mr-line) !important;
+}
+#store_nav_search_term,
+.searchbox input { color: var(--mr-fg) !important; }
+
+/* ---- Capsules, carousels, tiles --------------------------------------- */
+.store_main_capsule,
+.store_capsule,
+.tab_item,
+.carousel_items > a,
+.special,
+.store_capsule_frame,
+.home_marketing_message,
+.spotlight_content,
+.dailydeal_ctn,
+.salepreviewwidgets_StoreSaleWidgetContainer_,
+.gamehover_ctn,
+.game_hover,
+.search_result_row,
+.wishlist_row,
+.game_area_purchase_game,
+.game_area_dlc_bubble,
+.block,
+.block_content,
+.review_box,
+.apphub_Card,
+.profile_customization,
+.showcase_content_bg {
+    border-radius: var(--mr-r) !important;
+}
+
+.store_main_capsule,
+.tab_item,
+.search_result_row,
+.wishlist_row,
+.store_capsule,
+.apphub_Card {
+    overflow: hidden;
+    transition: transform var(--mr-t-3) var(--mr-ease), box-shadow var(--mr-t-3) var(--mr-ease), background-color var(--mr-t-2) !important;
+}
+.store_capsule:hover,
+.tab_item:hover,
+.apphub_Card:hover {
+    transform: translateY(calc(-3px * var(--mr-motion)));
+    box-shadow: var(--mr-shadow-2), 0 0 0 1px var(--mr-accent-24) !important;
+}
+
+.tab_item,
+.search_result_row,
+.wishlist_row {
+    background: rgba(255, 255, 255, 0.035) !important;
+    margin-bottom: 6px !important;
+}
+.tab_item:hover,
+.tab_item.focus,
+.search_result_row:hover {
+    background: var(--mr-grad-soft) !important;
+}
+.tab_item_name,
+.search_result_row .title { color: var(--mr-fg) !important; }
+
+img.tab_item_cap_img,
+.search_capsule img,
+.store_capsule img,
+.capsule img,
+.screenshot_holder img,
+.highlight_strip_item img {
+    border-radius: var(--mr-r-sm);
+}
+
+/* Tabs ("New & Trending", "Top Sellers", ...) */
+.home_tabs_row .tab,
+.home_tabs_row_ctn .tab {
+    border-radius: var(--mr-r-pill) !important;
+    background: transparent !important;
+}
+.home_tabs_row .tab.active,
+.home_tabs_row_ctn .tab.active {
+    background: var(--mr-grad) !important;
+}
+.home_tabs_row .tab.active .tab_content { color: var(--mr-on-accent) !important; }
+
+/* Carousel dots and arrows */
+.carousel_thumbs > div,
+.carousel_thumbs div.focus {
+    border-radius: 99px !important;
+}
+.carousel_thumbs div.focus { background: var(--mr-a) !important; }
+.arrow.left, .arrow.right {
+    border-radius: 50% !important;
+}
+
+/* ---- Prices ------------------------------------------------------------- */
+.discount_pct,
+.bundle_base_discount,
+.search_discount span {
+    border-radius: var(--mr-r-pill) !important;
+    background: var(--mr-grad) !important;
+    color: var(--mr-on-accent) !important;
+    font-weight: 700 !important;
+    padding: 0 8px !important;
+}
+.discount_block,
+.discount_prices {
+    background: transparent !important;
+}
+.discount_final_price,
+.game_purchase_price,
+.price {
+    font-family: var(--mr-font-mono) !important;
+    color: var(--mr-fg) !important;
+}
+.discount_original_price { color: var(--mr-fg-4) !important; }
+
+/* ---- Buttons ------------------------------------------------------------ */
+.btn_green_steamui,
+.btn_green_white_innerfade,
+.btn_addtocart .btn_green_steamui,
+.btnv6_green_white_innerfade,
+.btn_blue_steamui,
+.btnv6_blue_hoverfade,
+.btn_medium,
+.btn_profile_action,
+.btn_darkblue_white_innerfade,
+.btnv6_lightblue_blue,
+.queue_btn_active,
+.queue_btn_inactive {
+    border-radius: var(--mr-r-pill) !important;
+    overflow: hidden;
+    border: none !important;
+    transition: transform var(--mr-t-2) var(--mr-ease-spring), box-shadow var(--mr-t-2), filter var(--mr-t-2) !important;
+}
+.btn_green_steamui,
+.btn_green_white_innerfade,
+.btnv6_green_white_innerfade {
+    background: var(--mr-grad) !important;
+    background-size: 200% 100% !important;
+    color: var(--mr-on-accent) !important;
+    box-shadow: 0 8px 24px -8px color-mix(in oklab, var(--mr-b) 70%, transparent) !important;
+}
+.btn_green_steamui > span,
+.btn_green_white_innerfade > span,
+.btnv6_green_white_innerfade > span {
+    background: transparent !important;
+    color: var(--mr-on-accent) !important;
+    font-weight: 700 !important;
+}
+.btn_green_steamui:hover,
+.btn_green_white_innerfade:hover,
+.btnv6_green_white_innerfade:hover {
+    transform: translateY(calc(-1px * var(--mr-motion)));
+    background-position: 100% 0 !important;
+    box-shadow: 0 12px 30px -8px color-mix(in oklab, var(--mr-b) 90%, transparent) !important;
+}
+:is(.btn_blue_steamui, .btnv6_blue_hoverfade, .btn_darkblue_white_innerfade, .btnv6_lightblue_blue, .btn_profile_action, .queue_btn_inactive),
+:is(.btn_blue_steamui, .btnv6_blue_hoverfade, .btn_darkblue_white_innerfade, .btnv6_lightblue_blue, .btn_profile_action, .queue_btn_inactive) > span {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: var(--mr-fg) !important;
+}
+:is(.btn_blue_steamui, .btnv6_blue_hoverfade, .btn_darkblue_white_innerfade, .btnv6_lightblue_blue, .btn_profile_action, .queue_btn_inactive):hover,
+:is(.btn_blue_steamui, .btnv6_blue_hoverfade, .btn_darkblue_white_innerfade, .btnv6_lightblue_blue, .btn_profile_action, .queue_btn_inactive):hover > span {
+    background: var(--mr-accent-24) !important;
+}
+
+/* ---- Game page purchase blocks --------------------------------------- */
+.game_area_purchase_game {
+    background: var(--mr-glass) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+    box-shadow: var(--mr-glass-edge), var(--mr-shadow-1) !important;
+    padding: 18px 20px 26px !important;
+}
+.game_area_purchase_game h1 { font-size: 18px !important; }
+.game_purchase_action_bg,
+.game_purchase_action .game_purchase_action_bg {
+    background: rgba(6, 7, 11, 0.6) !important;
+    border-radius: var(--mr-r-pill) !important;
+    padding: 3px !important;
+}
+.game_area_purchase_game .game_area_purchase_platform,
+.game_area_purchase_game::before,
+.game_area_purchase_game::after { opacity: 0.6; }
+
+#game_highlights,
+.game_description_column,
+.rightcol .block,
+.glance_ctn,
+.game_meta_data .block {
+    border-radius: var(--mr-r) !important;
+}
+.glance_tags.popular_tags a.app_tag,
+.app_tag {
+    border-radius: var(--mr-r-pill) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: var(--mr-fg-2) !important;
+    box-shadow: none !important;
+    transition: background-color var(--mr-t-1), color var(--mr-t-1);
+}
+.app_tag:hover { background: var(--mr-accent-24) !important; color: var(--mr-fg) !important; }
+
+.game_page_autocollapse_fade,
+.game_page_autocollapse_readmore {
+    background: transparent !important;
+}
+
+/* Review score colors keep Valve's meaning, just softer */
+.game_review_summary.positive { color: var(--mr-ok) !important; }
+.game_review_summary.mixed { color: var(--mr-warn) !important; }
+.game_review_summary.negative { color: var(--mr-bad) !important; }
+
+/* ---- Community ---------------------------------------------------------- */
+.profile_header_bg,
+.profile_header_bg_texture {
+    background: transparent !important;
+}
+.profile_header .playerAvatar img,
+.playerAvatar img,
+.playerAvatar {
+    border-radius: 50% !important;
+}
+.profile_header .persona_name,
+.actual_persona_name {
+    font-family: var(--mr-font-display) !important;
+    font-weight: 750 !important;
+    background: var(--mr-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+.profile_leftcol .profile_customization,
+.profile_rightcol,
+.profile_content.has_profile_background {
+    background: var(--mr-glass) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+}
+.profile_rightcol { border-radius: var(--mr-r) !important; padding: 14px !important; }
+.profile_count_link,
+.profile_count_link_preview_ctn a {
+    border-radius: var(--mr-r-md);
+    transition: background-color var(--mr-t-1);
+}
+.profile_count_link:hover { background: var(--mr-hover); }
+
+/* Inputs on web pages */
+input[type="text"],
+input[type="search"],
+textarea,
+select {
+    border-radius: var(--mr-r-md) !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--mr-line) !important;
+    color: var(--mr-fg) !important;
+}
+input[type="text"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+    border-color: var(--mr-accent-40) !important;
+    box-shadow: 0 0 0 4px var(--mr-accent-08) !important;
+    outline: none !important;
+}
+
+/* Page-in animation for the main content */
+.page_content_ctn,
+.home_page_content,
+.profile_page,
+.search_page {
+    animation: mr-fade-up var(--mr-t-4) var(--mr-ease) backwards;
+}
+
+/* ---- New (React) store header: hashed classes, so anchor on the search field */
+.Panel.Focusable:has(input[name="term"][role="combobox"]):not(:has(.Panel.Focusable input[name="term"])) {
+    background: var(--mr-glass-strong) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+    box-shadow: var(--mr-glass-edge), var(--mr-shadow-2) !important;
+}
+input[name="term"][role="combobox"] {
+    border-radius: var(--mr-r-pill) 0 0 var(--mr-r-pill) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+form:has(input[name="term"][role="combobox"]) button[type="submit"] {
+    border-radius: 0 var(--mr-r-pill) var(--mr-r-pill) 0 !important;
+    background: var(--mr-grad) !important;
+    color: var(--mr-on-accent) !important;
+}
+
+/* Featured carousel: the info panel beside the big capsule */
+.store_main_capsule .info,
+#home_maincap_v7 .info {
+    background: var(--mr-glass) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+}
+.home_page_content .wishlist_flag,
+.ds_flag.ds_wishlist_flag {
+    background: var(--mr-grad) !important;
+    color: var(--mr-on-accent) !important;
+    border-radius: var(--mr-r-pill) !important;
+}
+
+/* =====================================================================
+   SILVERBANE web audit pass: every Valve-blue surface still found on
+   Store and Community pages (audited 2026-11-18).
+   ===================================================================== */
+
+/* ---------- Shared: footer, page headers, legacy rules -------------- */
+footer#footer,
+#footer.compact {
+    background: rgba(0, 0, 0, 0.55) !important;
+    border-top: 1px solid var(--mr-line-2) !important;
+}
+.page_header_ctn,
+.page_header_ctn.search,
+.apphub_background,
+.friends_header_bg,
+#BG_top_workshop,
+.market_header_bg,
+.home_page_body_ctn.has_takeover .static_takeover_ctn,
+.page_top_area .game,
+.page_content_ctn .page_top_area > div.game {
+    background-image: none !important;
+    background-color: transparent !important;
+}
+h2.gradientbg,
+.block .block_header > h2,
+.leftcol h2,
+.rightcol h2 {
+    background-image: none !important;
+    border-bottom: 1px solid var(--od-1-40) !important;
+    color: var(--mr-fg) !important;
+}
+
+/* Avatars: online = cyan, in-game = green, offline = steel */
+.playerAvatar.online,
+.avatar_block .avatar,
+div.playerAvatar.online,
+.friend_block_v2.online .player_avatar { background: var(--od-2) !important; }
+.playerAvatar.in-game,
+.friend_block_v2.in-game .player_avatar { background: var(--mr-ok) !important; }
+.playerAvatar.offline { background: var(--mr-fg-4) !important; }
+
+/* Generic legacy buttons */
+.btnv6_grey_black,
+.btn_grey_black,
+.btn_small_thin,
+.btn_small > span,
+.btn_uppercase > span,
+.game_button > span,
+#market_search_advanced_show > div {
+    background: var(--od-2-10) !important;
+    color: var(--od-2) !important;
+    border-radius: 0 !important;
+    box-shadow: inset 0 0 0 1px var(--od-2-40) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.btnv6_grey_black:hover, .btn_grey_black:hover, .game_button:hover > span,
+#market_search_advanced_show:hover > div, .btn_small:hover > span {
+    background: var(--od-2) !important;
+    color: var(--od-ink) !important;
+}
+
+/* ---------- Store ---------------------------------------------------- */
+/* Header: the outer panel that wraps the navigation */
+.Panel.Focusable:has(> [role="navigation"] input[name="term"]) {
+    background: var(--mr-glass-strong) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+    box-shadow: inset 0 -1px 0 var(--od-1-40) !important;
+}
+[role="navigation"]:has(input[name="term"]) { background: transparent !important; box-shadow: none !important; }
+[id^="searchSuggestions"] {
+    background: var(--od-panel) !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line-2), var(--mr-shadow-3) !important;
+    border-radius: 0 !important;
+}
+.carousel__slider,
+.carousel .SliderBody > div {
+    background-image: none !important;
+    background-color: rgba(0, 0, 0, 0.35) !important;
+}
+.home_gift_card_link {
+    background: var(--od-1) !important;
+    color: var(--od-ink) !important;
+    border-radius: 0 !important;
+    clip-path: var(--od-chamfer-sm);
+}
+.main_content_ctn .v2 > div[style*="cal_bg"],
+.home_cluster_ctn.v2 > div { background-image: none !important; }
+
+/* Game page */
+.queue_and_playtime > div,
+.queue_ctn,
+#queueActionsCtn {
+    background: rgba(0, 0, 0, 0.4) !important;
+    border-radius: 0 !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line) !important;
+}
+.game_area_dlc_row,
+.game_area_dlc_row.odd,
+.game_area_dlc_row.even {
+    background: rgba(255, 255, 255, 0.025) !important;
+    border-bottom: 1px solid var(--mr-line);
+}
+.game_area_dlc_row:hover { background: var(--od-2-10) !important; }
+.block.responsive_apppage_details_right,
+.block.responsive_apppage_reviewblock,
+#game_area_reviews,
+.review_box,
+#review_create {
+    background: rgba(0, 0, 0, 0.35) !important;
+    border-radius: 0 !important;
+}
+
+/* Search filters */
+#client_filter .block_content > div.checked,
+.block_content_inner > div.checked,
+.tab_filter_control_row.checked,
+.tab_filter_control.checked {
+    background: var(--od-1-20) !important;
+    color: var(--od-1) !important;
+    box-shadow: inset 3px 0 0 var(--od-1) !important;
+}
+.search_result_row.ds_collapse_flag:hover,
+.search_result_row:hover { background: var(--od-2-10) !important; }
+
+/* Account page */
+.account_header_line,
+.nav_item.active,
+.two_column.left .nav_item:hover {
+    background: var(--od-1-10) !important;
+    box-shadow: inset 3px 0 0 var(--od-1) !important;
+}
+
+/* ---------- Community: hubs and the community home ------------------- */
+.apphub_HomeHeader > div,
+.apphub_HomeHeaderContent { background-image: none !important; }
+.apphub_background .left > div,
+.apphub_background .right > div,
+.apphub_sectionTab,
+.apphub_sectionTabs a {
+    background: var(--od-2-10) !important;
+    border-radius: 0 !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line-2) !important;
+}
+.apphub_sectionTab.active,
+.apphub_sectionTabs a.active { background: var(--od-1) !important; color: var(--od-ink) !important; }
+.apphub_Card {
+    background: var(--od-panel) !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line-2) !important;
+    clip-path: var(--od-chamfer-sm);
+}
+.apphub_Card:hover { box-shadow: inset 0 0 0 1px var(--od-2), 0 0 20px var(--od-2-20) !important; }
+.apphub_Card > div:not(.apphub_CardBG):not([class*="Image"]):not([class*="image"]),
+.apphub_CardContentAuthorBlock {
+    background-color: rgba(0, 0, 0, 0.45) !important;
+}
+.apphub_Card .gradient,
+.apphub_Card > .gradient {
+    background: linear-gradient(transparent 5%, var(--od-panel) 95%) !important;
+}
+.apphub_CardBG.workshop,
+.apphub_Card.Announcement_Card > div[style*="background"],
+.apphub_Card.Announcement_Card > div:first-child { background-image: none !important; }
+
+/* Discussions */
+.forum_topic {
+    background: rgba(255, 255, 255, 0.025) !important;
+    border-radius: 0 !important;
+    border-left: 2px solid transparent;
+    transition: background-color var(--mr-t-1), border-color var(--mr-t-1);
+}
+.forum_topic.unread {
+    background: var(--od-2-10) !important;
+    border-left-color: var(--od-2);
+}
+.forum_topic:hover { background: var(--od-1-10) !important; border-left-color: var(--od-1); }
+.forum_paging,
+.forum_paging_header,
+.forum_topic_container,
+.forum_op,
+.commentthread_comment,
+.commentthread_area { background: transparent !important; }
+.forum_op,
+.commentthread_comment {
+    border-bottom: 1px solid var(--mr-line);
+}
+
+/* Activity feed */
+.blotter_block,
+.blotter_day,
+.blotter_userstatus,
+.blotter_group_announcement {
+    background: rgba(0, 0, 0, 0.35) !important;
+    border-radius: 0 !important;
+}
+.blotter_userstatus .collapsed > div,
+.blotter_group_announcement .collapsed > div {
+    background: linear-gradient(transparent 0%, var(--od-panel) 80%) !important;
+}
+.blotter_appselect {
+    background: var(--od-2-10) !important;
+    box-shadow: inset 0 0 0 1px var(--od-2-40) !important;
+    border-radius: 0 !important;
+}
+
+/* Market */
+#BG_top .user_info,
+.market_listing_row,
+.market_home_listing_table,
+#myListings,
+.market_search_sidebar_contents,
+.market_search_box_container {
+    background: rgba(0, 0, 0, 0.4) !important;
+    border-radius: 0 !important;
+}
+.market_listing_row:hover { background: var(--od-2-10) !important; }
+.market_header_logo { filter: grayscale(1) brightness(1.2); }
+
+/* Inventory */
+#tabcontent_inventory,
+.inventory_page_right,
+.inventory_iteminfo,
+.view_inventory_page,
+#active_inventory_page,
+.inventory_page_left,
+#mainContents .tabitems_ctn,
+.games_list_tabs_ctn,
+.pagecontent.no_header > .profile_small_header_bg {
+    background: rgba(0, 0, 0, 0.4) !important;
+    background-image: none !important;
+    border-radius: 0 !important;
+}
+#iteminfo0 > div, #iteminfo1 > div {
+    background-image: none !important;
+    background-color: rgba(0, 0, 0, 0.45) !important;
+}
+.games_list_tab {
+    background: var(--od-2-10) !important;
+    border-radius: 0 !important;
+}
+.games_list_tab.active { background: var(--od-1) !important; }
+.games_list_tab.active * { color: var(--od-ink) !important; }
+.itemHolder { background: rgba(255, 255, 255, 0.04) !important; border-radius: 0 !important; }
+.itemHolder:hover { box-shadow: inset 0 0 0 1px var(--od-2) !important; }
+
+/* Friends page */
+.profile_friends.title_bar,
+.title_bar {
+    background: var(--od-1-10) !important;
+    box-shadow: inset 3px 0 0 var(--od-1), inset 0 -1px 0 var(--od-1-40) !important;
+    border-radius: 0 !important;
+}
+.friend_block_v2 {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-radius: 0 !important;
+    transition: background-color var(--mr-t-1);
+}
+.friend_block_v2:hover { background: var(--od-2-10) !important; }
+.search_your_friends,
+#search_text_box { background-color: rgba(0, 0, 0, 0.5) !important; border-radius: 0 !important; }
+
+/* Badges */
+.badge_row,
+.badge_row_inner {
+    background: rgba(0, 0, 0, 0.4) !important;
+    border-radius: 0 !important;
+}
+.badge_row.is_link:hover .badge_row_inner { background: var(--od-2-10) !important; }
+.badge_row { box-shadow: inset 0 0 0 1px var(--mr-line) !important; margin-bottom: 8px; }
+
+/* Workshop and groups */
+.browseApps,
+.panel_margin_none,
+.primary_panel,
+.announcement.detailBox,
+.detailBox,
+.group_summary,
+.rightbox {
+    background: rgba(0, 0, 0, 0.4) !important;
+    background-image: none !important;
+    border-radius: 0 !important;
+}
+.workshopAppsSort .browseOption > div,
+.browseOption.selected > div {
+    background-image: none !important;
+}
+.browseOption.selected { box-shadow: inset 3px 0 0 var(--od-1) !important; background: var(--od-1-10) !important; }
+
+/* Audit pass 2: smaller leftovers */
+.discussionSearchTextContainer,
+.searchApps,
+.rightbox_list_selection_background {
+    background-image: none !important;
+}
+.discussionSearchTextContainer,
+.searchApps { background-color: rgba(0, 0, 0, 0.5) !important; box-shadow: inset 0 0 0 1px var(--mr-line-2); }
+.rightbox_list_selection_background { background: var(--od-1-10) !important; box-shadow: inset 3px 0 0 var(--od-1); }
+.blotter_userstatus .collapsed > div,
+.blotter_group_announcement .collapsed > div { background-image: linear-gradient(transparent, var(--od-panel)) !important; }
+.profile_small_header_bg,
+.profile_xp_block {
+    background: rgba(0, 0, 0, 0.45) !important;
+    box-shadow: inset 0 -1px 0 var(--od-1-40) !important;
+}
+html body #iteminfo0 > div[class],
+html body #iteminfo1 > div[class] {
+    background-image: none !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+html body #active_inventory_page #iteminfo0 > div[class],
+html body #active_inventory_page #iteminfo1 > div[class] {
+    background-image: none !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ===== SILVERBANE web layer ===== */
+h1, h2, .pageheader, .home_page_content h2, .home_section_title, .apphub_AppName, #appHubAppName {
+    font-family: var(--sb-serif) !important;
+    font-variant: small-caps;
+    text-transform: none !important;
+    letter-spacing: 0.08em !important;
+    color: var(--sb-parch) !important;
+}
+.store_main_capsule, .store_capsule, .tab_item, .search_result_row, .wishlist_row, .apphub_Card,
+.game_area_purchase_game, .btn_green_steamui, .btn_green_white_innerfade, .btnv6_green_white_innerfade,
+.btn_blue_steamui, .btnv6_blue_hoverfade, .btn_medium, .btn_profile_action, .app_tag, .store_nav_bg, .store_nav .tab,
+#store_search, .searchbox, .discount_pct { border-radius: 2px !important; }
+.game_area_purchase_game { background: var(--sb-frame), var(--mr-glass) !important; }
+.tab_item:hover, .tab_item.focus, .search_result_row:hover {
+    background: linear-gradient(90deg, var(--sb-blood-60), transparent) !important;
+    box-shadow: inset 2px 0 0 var(--sb-gold) !important;
+}
+.btn_green_steamui, .btn_green_white_innerfade, .btnv6_green_white_innerfade {
+    background: var(--sb-frame), linear-gradient(180deg, color-mix(in srgb, var(--sb-blood) 100%, white 10%), color-mix(in srgb, var(--sb-blood) 70%, black)) !important;
+    box-shadow: 0 0 16px -4px color-mix(in srgb, #FF7A1A 40%, transparent) !important;
+    --sb-c: 6px;
+}
+.btn_green_steamui > span, .btn_green_white_innerfade > span, .btnv6_green_white_innerfade > span {
+    color: var(--sb-parch) !important;
+    font-family: var(--sb-serif);
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+}
+.discount_pct, .bundle_base_discount, .search_discount span { background: var(--sb-blood) !important; color: var(--sb-parch) !important; }
+.discount_final_price { color: var(--sb-gold) !important; font-family: var(--sb-serif) !important; }
+.home_tabs_row .tab.active, .home_tabs_row_ctn .tab.active { background: var(--sb-blood) !important; }
+.home_tabs_row .tab.active .tab_content { color: var(--sb-parch) !important; }
+.Panel.Focusable:has(> [role="navigation"] input[name="term"]) { box-shadow: inset 0 -1px 0 var(--sb-gold-35) !important; }
+form:has(input[name="term"][role="combobox"]) button[type="submit"] { background: var(--sb-blood) !important; color: var(--sb-parch) !important; }
+.profile_header .persona_name, .actual_persona_name {
+    background: none !important;
+    color: var(--sb-parch) !important;
+    -webkit-text-fill-color: var(--sb-parch);
+    font-family: var(--sb-serif) !important;
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 18px color-mix(in srgb, #FFB347 30%, transparent);
+}
+.profile_rightcol { background: var(--sb-frame), var(--mr-glass) !important; }
+.playerAvatar, .playerAvatar img { border-radius: 2px !important; }

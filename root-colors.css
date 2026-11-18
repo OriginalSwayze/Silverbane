@@ -1,0 +1,24 @@
+/* SILVERBANE — user colors (Millennium "Colors" page).
+   Used only when Look → Palette is set to "Custom". Opaque #hex only. */
+:root {
+    /*
+     * @name Custom: silver
+     * @description Highlights, hovers and the moonlight.
+     */
+    --sb-user-silver: #C9CED6;
+    /*
+     * @name Custom: gold
+     * @description Frames, ornaments and active markers.
+     */
+    --sb-user-gold: #C8A35A;
+    /*
+     * @name Custom: blood
+     * @description Play, selection and important actions.
+     */
+    --sb-user-blood: #8E1C1C;
+    /*
+     * @name Custom: night
+     * @description The deepest background color.
+     */
+    --sb-user-bg: #0B0A08;
+}

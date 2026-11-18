@@ -1,0 +1,2 @@
+/* Night: Still — fog and embers stand still */
+html::before, html::after, body::before { animation: none !important; }

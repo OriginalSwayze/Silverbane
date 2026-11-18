@@ -1,0 +1,61 @@
+/* SILVERBANE — the "Sign in to Steam" window: a turning sigil over the night. */
+@import url("./core/tokens.css");
+@import url("./core/base.css");
+@import url("./core/backdrop.css");
+
+html .Login,
+html .Login.AnimatedBackground,
+html .LoginAnimatedBackground { background: transparent !important; }
+html .Login.AnimatedBackground::before,
+html .LoginAnimatedBackground::after,
+html .Login video { display: none !important; }
+html .Login .LoginStatusContainer,
+html .Login .SpinnerLoaderContainer { background: transparent !important; }
+html .Login .SpinnerLoaderContainer { position: relative; }
+html .Login .SpinnerLoaderContainer > img { opacity: 0 !important; }
+html .Login .SpinnerLoaderContainer::before {
+    content: "";
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 120px; height: 120px;
+    margin: -60px 0 0 -60px;
+    border-radius: 50%;
+    background:
+        repeating-conic-gradient(from 0deg, var(--sb-gold) 0 1.5deg, transparent 1.5deg 22.5deg),
+        radial-gradient(circle, transparent 0 44px, var(--sb-gold) 45px 46px, transparent 47px 54px, var(--sb-gold-60) 55px 56px, transparent 57px);
+    -webkit-mask: radial-gradient(circle, transparent 0 43px, #000 44px 57px, transparent 58px);
+    mask: radial-gradient(circle, transparent 0 43px, #000 44px 57px, transparent 58px);
+    filter: drop-shadow(0 0 10px var(--sb-gold-60));
+    animation: sb-sigil 8s linear infinite;
+}
+html .Login .SpinnerLoaderContainer::after {
+    content: "";
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 12px; height: 12px;
+    margin: -6px 0 0 -6px;
+    background: var(--sb-gold);
+    transform: rotate(45deg);
+    box-shadow: 0 0 16px var(--sb-gold);
+    animation: sb-candle 3s linear infinite;
+}
+html .Login .LoadingStatus,
+html .Login .LoadingStatus > .LoginStatus {
+    font-family: var(--sb-serif) !important;
+    font-style: italic;
+    letter-spacing: 0.06em;
+    color: var(--mr-fg-2) !important;
+}
+html .Login .ProgressBar {
+    border-radius: 0 !important;
+    background: linear-gradient(180deg, #F0D08A, var(--sb-gold) 50%, #8A6A2E) !important;
+}
+html .Login .Avatar img { border-radius: 50% !important; box-shadow: 0 0 0 1px var(--sb-gold), 0 0 24px -4px color-mix(in srgb, #FF7A1A 50%, transparent); }
+html .Login .UserContainer > .PersonaName {
+    font-family: var(--sb-serif) !important;
+    font-variant: small-caps;
+    font-size: 22px !important;
+    letter-spacing: 0.12em;
+    color: var(--sb-parch) !important;
+    text-shadow: 0 0 18px color-mix(in srgb, #FFB347 35%, transparent);
+}

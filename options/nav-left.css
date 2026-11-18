@@ -1,0 +1,5 @@
+/* Navigator: Left — the pill sits after the menus */
+html .TopBar > .SuperNavBar {
+    left: 400px !important;
+    transform: none !important;
+}

@@ -1,0 +1,5 @@
+/* Cursor light: Off */
+:root { --mr-cursor-light: off; }
+html.mr-js .MainPanel::before,
+html.mr-js .MainPanel::after,
+html.mr-js .Library > .Container > div:not(.MainPanel)::after { display: none !important; }

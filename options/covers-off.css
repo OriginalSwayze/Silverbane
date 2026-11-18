@@ -1,0 +1,4 @@
+/* Cover hover: Off */
+:root { --mr-tilt: off; }
+html .LibraryItemBox:hover { transform: none !important; box-shadow: var(--mr-shadow-1) !important; }
+html .LibraryItemBox::after { display: none !important; }

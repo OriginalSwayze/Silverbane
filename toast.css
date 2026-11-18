@@ -1,0 +1,50 @@
+/* SILVERBANE — notifications arrive as sealed letters. */
+@import url("./core/tokens.css");
+@import url("./core/base.css");
+
+html:has(> body.DesktopToastContainer),
+html body.DesktopToastContainer { background: transparent !important; }
+html .DesktopToastContainer .DesktopToastPopup {
+    position: relative;
+    --sb-c: 10px;
+    border-radius: 0 !important;
+    border: none !important;
+    background: var(--sb-frame), linear-gradient(180deg, #1D1914, #110F0B) !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line-2) !important;
+    animation: sb-letter-in 700ms var(--mr-ease) backwards;
+}
+@keyframes sb-letter-in {
+    from { opacity: 0; transform: translateY(calc(16px * var(--mr-motion))); filter: blur(4px); }
+    to   { opacity: 1; transform: none; filter: none; }
+}
+/* Wax seal */
+html .DesktopToastContainer .DesktopToastPopup::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, color-mix(in srgb, var(--sb-blood) 100%, white 25%), var(--sb-blood) 60%, color-mix(in srgb, var(--sb-blood) 60%, black));
+    box-shadow: 0 1px 2px #000, inset 0 0 0 3px color-mix(in srgb, var(--sb-blood) 80%, black);
+    z-index: 3;
+}
+html .DesktopToastContainer .DesktopToastBackground,
+html .DesktopToastContainer .DesktopToastTemplate { background: transparent !important; }
+html .DesktopToastContainer .DesktopToastTemplate :is(.AppLogo, .StandardLogoDimensions),
+html .DesktopToastContainer .DesktopToastTemplate .AppLogo :is(.Container, img) { border-radius: 2px !important; box-shadow: 0 0 0 1px var(--sb-gold-35); }
+html .DesktopToastContainer .DesktopToastTemplate .Header .Title,
+html .DesktopToastContainer .DesktopToastTemplate :is(.GroupMessageUserName, .IngameTitle) {
+    font-family: var(--sb-serif) !important;
+    font-variant: small-caps;
+    font-size: 15px !important;
+    letter-spacing: 0.06em;
+    color: var(--sb-parch) !important;
+}
+html .DesktopToastContainer .DesktopToastTemplate :is(.StandardNotificationDescription, .GroupMessageBody, .StandardNotificationSubText) {
+    color: var(--mr-fg-2) !important;
+    font-family: var(--sb-serif) !important;
+    font-style: italic;
+}
+html .DesktopToastContainer .DesktopToastTemplate .FriendInGameAppColor { color: var(--mr-ok) !important; }

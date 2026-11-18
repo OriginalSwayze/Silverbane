@@ -1,0 +1,91 @@
+/* ==========================================================================
+   SILVERBANE — settings & paged dialogs (Steam Settings, game Properties,
+   Millennium's own settings).
+   ========================================================================== */
+
+html .PagedSettingsDialog,
+html .PagedSettingsDialog .PagedSettingDialog_ContentColumn,
+html .PagedSettingsDialog .PagedSettingDialog_ContentColumn > .DialogContent {
+    background: transparent !important;
+}
+
+html .PagedSettingsDialog .PagedSettingsDialog_PageListColumn {
+    background: rgba(255, 255, 255, 0.025) !important;
+    border-right: 1px solid var(--mr-line) !important;
+    padding: 10px !important;
+}
+html .PagedSettingsDialog_PageListColumn .PagedSettingsDialog_Title {
+    font-family: var(--mr-font-display) !important;
+    font-weight: 750 !important;
+    font-size: 22px !important;
+    letter-spacing: -0.02em !important;
+    background: var(--mr-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    text-transform: none !important;
+}
+
+html .PagedSettingsDialog_PageList .PagedSettingsDialog_PageListItem {
+    position: relative;
+    border-radius: var(--mr-r-md) !important;
+    margin: 1px 0 !important;
+    color: var(--mr-fg-3) !important;
+    background: transparent !important;
+    transition: background-color var(--mr-t-1), color var(--mr-t-1), padding-left var(--mr-t-3) var(--mr-ease) !important;
+}
+html .PagedSettingsDialog_PageList .PagedSettingsDialog_PageListItem:not(.Active):hover {
+    background: var(--mr-hover) !important;
+    color: var(--mr-fg) !important;
+}
+html .PagedSettingsDialog_PageList .PagedSettingsDialog_PageListItem.Active {
+    background: var(--mr-grad-soft) !important;
+    color: #fff !important;
+    box-shadow: inset 0 0 0 1px var(--mr-accent-24);
+}
+html .PagedSettingsDialog_PageList .PagedSettingsDialog_PageListItem.Active::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 7px; bottom: 7px;
+    width: 3px;
+    border-radius: 3px;
+    background: var(--mr-grad);
+    box-shadow: 0 0 10px var(--mr-a);
+}
+html .PagedSettingsDialog_PageList .PagedSettingsDialog_PageListItem .PageListItem_Title {
+    font-weight: 600 !important;
+    text-transform: none !important;
+}
+html .PagedSettingsDialog_PageList .PagedSettingsDialog_PageListItem .PageListItem_Icon svg,
+html .PagedSettingsDialog_PageList .PagedSettingsDialog_PageListItem .PageListItem_Icon svg path {
+    fill: currentColor !important;
+}
+html .PagedSettingsDialog_PageList .PageListSeparator {
+    background: var(--mr-line) !important;
+    height: 1px !important;
+    margin: 8px 10px !important;
+}
+
+/* Rows */
+html .PagedSettingsDialog :is(.Field, .FakeContainer, .InfoRow) {
+    border-radius: var(--mr-r-md);
+    transition: background-color var(--mr-t-1);
+}
+html .PagedSettingsDialog .Field:hover { background: rgba(255, 255, 255, 0.025); }
+html .PagedSettingsDialog :is(.FieldLabel, .FieldLabel .EntryLabel, .SettingsDialogBodyText) {
+    color: var(--mr-fg) !important;
+    font-weight: 500 !important;
+}
+html .PagedSettingsDialog :is(.FieldDescription, .SettingsDialogDescriptionText) {
+    color: var(--mr-fg-3) !important;
+}
+html .PagedSettingsDialog .SettingsDialogSubHeader {
+    font-family: var(--mr-font-display);
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    color: var(--mr-accent-text) !important;
+}
+html .PagedSettingsDialog .Field + .Field,
+html .PagedSettingsDialog .Field { border-color: var(--mr-line) !important; }

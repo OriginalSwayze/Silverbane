@@ -1,0 +1,134 @@
+/* ==========================================================================
+   SILVERBANE — controls shared by every client window:
+   buttons, inputs, toggles, dropdowns, checkboxes, tooltips, modals.
+   ========================================================================== */
+
+/* ---- Buttons ------------------------------------------------------------ */
+html .DialogButton {
+    border-radius: var(--mr-r-pill) !important;
+    background: rgba(255, 255, 255, 0.07) !important;
+    color: var(--mr-fg) !important;
+    border: none !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.01em !important;
+    text-transform: none !important;
+    transition: background-color var(--mr-t-1), transform var(--mr-t-2) var(--mr-ease-spring), box-shadow var(--mr-t-2) !important;
+}
+html .DialogButton:not(.Disabled):not(:disabled):hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    transform: translateY(calc(-1px * var(--mr-motion)));
+}
+html .DialogButton:not(.Disabled):not(:disabled):active { transform: scale(0.97); }
+html .DialogButton.Primary,
+html .DialogButton._DialogLayout.Primary,
+html button.DialogButton.Primary {
+    background: var(--mr-grad) !important;
+    background-size: 200% 100% !important;
+    color: var(--mr-on-accent) !important;
+    box-shadow: 0 8px 22px -8px color-mix(in oklab, var(--mr-b) 70%, transparent) !important;
+}
+html .DialogButton.Primary:not(.Disabled):hover { background-position: 100% 0 !important; }
+html .DialogButton:is(.Disabled, :disabled) { opacity: 0.4; }
+
+/* ---- Text inputs -------------------------------------------------------- */
+html :is(.DialogInput, .DialogTextInputBase, input.TextInput, textarea.DialogTextInputBase) {
+    border-radius: var(--mr-r-md) !important;
+    background-color: rgba(255, 255, 255, 0.045) !important;
+    border: 1px solid var(--mr-line) !important;
+    color: var(--mr-fg) !important;
+    transition: border-color var(--mr-t-2), box-shadow var(--mr-t-2), background-color var(--mr-t-2) !important;
+}
+html :is(.DialogInput, .DialogTextInputBase):focus {
+    border-color: var(--mr-accent-40) !important;
+    box-shadow: 0 0 0 4px var(--mr-accent-08) !important;
+    outline: none !important;
+}
+
+/* ---- Toggles ------------------------------------------------------------ */
+html .ToggleRail {
+    border-radius: var(--mr-r-pill) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    transition: background var(--mr-t-2) !important;
+}
+html .Toggle.On .ToggleRail,
+html .Toggle[class*="On"] .ToggleRail {
+    background: var(--mr-grad) !important;
+}
+html .ToggleSwitch {
+    background: #fff !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4) !important;
+    transition: left var(--mr-t-3) var(--mr-ease-spring), transform var(--mr-t-3) var(--mr-ease-spring) !important;
+}
+
+/* ---- Checkboxes -------------------------------------------------------- */
+html .DialogCheckbox {
+    border-radius: 6px !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid var(--mr-line-2) !important;
+    transition: background var(--mr-t-1), border-color var(--mr-t-1);
+}
+html .DialogCheckbox.Active,
+html .DialogCheckbox:has(svg) {
+    background: var(--mr-grad) !important;
+    border-color: transparent !important;
+}
+html .DialogCheckbox svg path { fill: var(--mr-on-accent) !important; }
+
+/* ---- Dropdowns ---------------------------------------------------------- */
+html .DialogDropDown {
+    border-radius: var(--mr-r-md) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--mr-line) !important;
+    box-shadow: none !important;
+    transition: border-color var(--mr-t-1), background-color var(--mr-t-1);
+}
+html .DialogDropDown:hover { border-color: var(--mr-line-2) !important; background: rgba(255, 255, 255, 0.08) !important; }
+
+/* ---- Sliders ----------------------------------------------------------- */
+html .SliderTrack { background: rgba(255, 255, 255, 0.1) !important; border-radius: 99px !important; }
+html .SliderHandle { background: #fff !important; box-shadow: 0 0 0 4px var(--mr-accent-24) !important; }
+
+/* ---- Modals (separate windows and in-window overlays) ------------------- */
+html .ModalPosition_Content,
+html .GenericConfirmDialog,
+html .ModalDialogPopup .DialogContent {
+    border-radius: var(--mr-r-lg) !important;
+}
+html .GenericConfirmDialog,
+html .ModalPosition_Content > .DialogContent {
+    background: var(--mr-glass-solid) !important;
+    box-shadow: var(--mr-glass-edge), var(--mr-shadow-3) !important;
+    border: none !important;
+    animation: mr-pop var(--mr-t-3) var(--mr-ease) backwards;
+}
+html .DialogHeader {
+    font-family: var(--mr-font-display) !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+    letter-spacing: -0.01em !important;
+    color: var(--mr-fg) !important;
+}
+html .DialogBody, html .DialogBodyText { color: var(--mr-fg-2) !important; }
+html .ModalOverlayBackground,
+html .ModalOverlayContent.active ~ .ModalOverlayBackground {
+    background: rgba(3, 4, 8, 0.6) !important;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+/* ---- Tooltips ---------------------------------------------------------- */
+html .tool-tip-source + div[class*="ToolTip"],
+html .TextToolTip,
+html .ToolTip {
+    background: var(--mr-glass-solid) !important;
+    border-radius: var(--mr-r-sm) !important;
+    border: 1px solid var(--mr-line-2) !important;
+    box-shadow: var(--mr-shadow-2) !important;
+    color: var(--mr-fg) !important;
+    font-size: 12px !important;
+    animation: mr-pop var(--mr-t-2) var(--mr-ease) backwards;
+}
+
+/* ---- Links -------------------------------------------------------------- */
+html a { color: var(--mr-accent-text); }

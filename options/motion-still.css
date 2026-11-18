@@ -1,0 +1,4 @@
+/* Motion: Still — no theme motion at all */
+:root { --mr-motion: 0; --mr-ambient: paused; --od-boot: off; --mr-t-1: 0ms; --mr-t-2: 0ms; --mr-t-3: 0ms; --mr-t-4: 0ms; }
+*, *::before, *::after { animation-duration: 0ms !important; animation-delay: 0ms !important; }
+html .PlayButton.ButtonChild::after { display: none !important; }

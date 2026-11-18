@@ -1,0 +1,76 @@
+/* ==========================================================================
+   SILVERBANE — the night behind the pages.
+     html::before — a far, cold moonlit sky over warm black
+     html::after  — two banks of fog drifting slowly across the bottom
+     body::before — embers rising from below (three particle layers)
+     body::after  — parchment grain + a heavy candlelit vignette
+   ========================================================================== */
+
+html { background: var(--mr-base) !important; }
+body { background: transparent !important; }
+
+html::before,
+html::after,
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    pointer-events: none;
+    z-index: -1;
+}
+
+html::before {
+    inset: 0;
+    background:
+        radial-gradient(28% 22% at 78% 8%, color-mix(in srgb, var(--sb-silver) 16%, transparent), transparent 70%),
+        radial-gradient(70% 45% at 50% 115%, color-mix(in srgb, #FF7A1A 12%, transparent), transparent 70%),
+        radial-gradient(60% 50% at 12% 30%, color-mix(in srgb, var(--sb-blood) 12%, transparent), transparent 70%),
+        linear-gradient(180deg, color-mix(in srgb, var(--sb-bg) 80%, #1B2230) 0%, var(--sb-bg) 55%);
+    animation: sb-candle 7s linear infinite;
+    animation-play-state: var(--mr-ambient);
+}
+
+/* Fog: two wide soft banks, opposite drift */
+html::after {
+    left: -25%;
+    right: -25%;
+    bottom: -10%;
+    height: 60%;
+    background:
+        radial-gradient(40% 50% at 25% 70%, color-mix(in srgb, var(--sb-silver) 9%, transparent), transparent 70%),
+        radial-gradient(35% 45% at 70% 80%, color-mix(in srgb, var(--sb-silver) 8%, transparent), transparent 70%),
+        radial-gradient(50% 40% at 50% 100%, color-mix(in srgb, var(--sb-silver) 7%, transparent), transparent 75%);
+    opacity: var(--sb-fog-opacity, 1);
+    animation: sb-fog-a 48s var(--mr-ease-io) infinite alternate;
+    animation-play-state: var(--mr-ambient);
+}
+
+/* Embers: tiny warm points on three tiles moving upward at different speeds */
+body::before {
+    inset: 0;
+    background-image:
+        radial-gradient(1.6px 1.6px at 20% 30%, #FFB347, transparent),
+        radial-gradient(1.2px 1.2px at 70% 60%, #FF8A3D, transparent),
+        radial-gradient(2px 2px at 45% 85%, #FFC56E, transparent);
+    background-size: 340px 900px, 520px 1300px, 260px 700px;
+    -webkit-mask-image: linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.6) 45%, transparent 85%);
+    mask-image: linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.6) 45%, transparent 85%);
+    opacity: var(--sb-ember-opacity, 0.55);
+    animation: sb-embers 38s linear infinite;
+    animation-play-state: var(--mr-ambient);
+}
+
+body::after {
+    inset: 0;
+    background:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .9  0 0 0 0 .8  0 0 0 0 .6  0 0 0 .06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+        radial-gradient(120% 95% at 50% 45%, transparent 50%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+.Wrapper.ForceOpaqueBackground,
+.FocusNavigationRoot,
+.Root,
+.OuterFrame,
+.ContentFrame {
+    background: transparent !important;
+}

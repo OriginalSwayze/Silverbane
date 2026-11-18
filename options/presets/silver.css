@@ -1,0 +1,9 @@
+/* SILVERBANE palette: Silver — silver, old gold, dried blood */
+:root {
+    --sb-p-silver: #C9CED6;
+    --sb-p-gold: #C8A35A;
+    --sb-p-blood: #8E1C1C;
+    --sb-p-bg: #0B0A08;
+    --sb-p-panel: #15120E;
+    --sb-p-parch: #E4D5B2;
+}

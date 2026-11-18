@@ -1,0 +1,6 @@
+/* Dock labels: Always */
+html .BottomBar :is(.AddGameButton, .DownloadStatus, .FriendsButton) { gap: 9px !important; }
+html .BottomBar :is(.AddGameButton, .DownloadStatus, .FriendsButton) :is(.Text, .Queue) {
+    max-width: 180px !important;
+    opacity: 1 !important;
+}

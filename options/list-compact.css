@@ -1,0 +1,3 @@
+/* Game list density: Compact */
+html .ReactVirtualized__List .GameListEntryContainer > span { font-size: 12px !important; }
+html .ReactVirtualized__List .GameListEntryContainer .GameIcon { transform: scale(0.85); }

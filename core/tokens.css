@@ -1,0 +1,142 @@
+/* ==========================================================================
+   SILVERBANE — design tokens.
+   A dark-fantasy grimoire: warm candlelit black, tarnished silver,
+   old gold and dried blood. Presets (options/presets/*.css) set --sb-p-*.
+   The shared component files read --mr-*; the audit layers read --od-*;
+   both are mapped onto the Silverbane palette here.
+   ========================================================================== */
+
+:root {
+    /* ---- Palette ------------------------------------------------------- */
+    --sb-silver: var(--sb-p-silver, #C9CED6);
+    --sb-gold:   var(--sb-p-gold,   #C8A35A);
+    --sb-blood:  var(--sb-p-blood,  #8E1C1C);
+    --sb-bg:     var(--sb-p-bg,     #0B0A08);
+    --sb-panel:  var(--sb-p-panel,  #15120E);
+    --sb-parch:  var(--sb-p-parch,  #E4D5B2);
+
+    --sb-gold-10: color-mix(in srgb, var(--sb-gold) 10%, transparent);
+    --sb-gold-20: color-mix(in srgb, var(--sb-gold) 20%, transparent);
+    --sb-gold-35: color-mix(in srgb, var(--sb-gold) 35%, transparent);
+    --sb-gold-60: color-mix(in srgb, var(--sb-gold) 60%, transparent);
+    --sb-silver-08: color-mix(in srgb, var(--sb-silver) 8%, transparent);
+    --sb-silver-15: color-mix(in srgb, var(--sb-silver) 15%, transparent);
+    --sb-silver-30: color-mix(in srgb, var(--sb-silver) 30%, transparent);
+    --sb-blood-30: color-mix(in srgb, var(--sb-blood) 30%, transparent);
+    --sb-blood-60: color-mix(in srgb, var(--sb-blood) 60%, transparent);
+
+    --sb-candle: 0 0 14px color-mix(in srgb, #FFB347 45%, transparent), 0 0 40px color-mix(in srgb, #FF7A1A 18%, transparent);
+    --sb-engrave: 0 1px 0 rgba(0, 0, 0, 0.9), 0 -1px 0 rgba(255, 255, 255, 0.06);
+
+    /* Ornamented frame: a hairline gold border with heavier corner brackets.
+       Use as extra background layers in front of a panel color. */
+    --sb-c: 14px;   /* corner bracket length */
+    --sb-frame:
+        linear-gradient(var(--sb-gold), var(--sb-gold)) 0 0 / var(--sb-c) 1px no-repeat,
+        linear-gradient(var(--sb-gold), var(--sb-gold)) 0 0 / 1px var(--sb-c) no-repeat,
+        linear-gradient(var(--sb-gold), var(--sb-gold)) 100% 0 / var(--sb-c) 1px no-repeat,
+        linear-gradient(var(--sb-gold), var(--sb-gold)) 100% 0 / 1px var(--sb-c) no-repeat,
+        linear-gradient(var(--sb-gold), var(--sb-gold)) 0 100% / var(--sb-c) 1px no-repeat,
+        linear-gradient(var(--sb-gold), var(--sb-gold)) 0 100% / 1px var(--sb-c) no-repeat,
+        linear-gradient(var(--sb-gold), var(--sb-gold)) 100% 100% / var(--sb-c) 1px no-repeat,
+        linear-gradient(var(--sb-gold), var(--sb-gold)) 100% 100% / 1px var(--sb-c) no-repeat;
+    /* A horizontal rule that fades out at both ends */
+    --sb-rule: linear-gradient(90deg, transparent, var(--sb-gold-60) 20%, var(--sb-gold-60) 80%, transparent);
+    /* Diamond glyph as an inline SVG */
+    --sb-diamond: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><path d='M5 0L10 5L5 10L0 5Z' fill='%23C8A35A'/></svg>");
+
+    /* ---- Mapping onto the shared --mr-* language ----------------------- */
+    --mr-a: var(--sb-gold);
+    --mr-b: var(--sb-silver);
+    --mr-c: var(--sb-blood);
+    --mr-base: var(--sb-bg);
+    --mr-on-accent: var(--sb-parch);
+    --mr-accent: var(--sb-gold);
+    --mr-grad: linear-gradient(180deg, color-mix(in srgb, var(--sb-blood) 100%, white 6%), color-mix(in srgb, var(--sb-blood) 75%, black));
+    --mr-grad-loop: linear-gradient(90deg, var(--sb-gold-35), var(--sb-gold), var(--sb-gold-35));
+    --mr-grad-soft: linear-gradient(90deg, var(--sb-blood-60), transparent 90%);
+    --mr-accent-08: var(--sb-gold-10);
+    --mr-accent-14: var(--sb-gold-10);
+    --mr-accent-24: var(--sb-gold-20);
+    --mr-accent-40: var(--sb-gold-35);
+    --mr-accent-text: var(--sb-gold);
+
+    --mr-fg: #E8E1D1;
+    --mr-fg-2: #B6AD9B;
+    --mr-fg-3: #807867;
+    --mr-fg-4: #514A3E;
+    --mr-line: color-mix(in srgb, var(--sb-gold) 14%, transparent);
+    --mr-line-2: color-mix(in srgb, var(--sb-gold) 24%, transparent);
+    --mr-line-3: color-mix(in srgb, var(--sb-gold) 42%, transparent);
+    --mr-hover: color-mix(in srgb, var(--sb-silver) 6%, transparent);
+    --mr-press: color-mix(in srgb, var(--sb-silver) 11%, transparent);
+
+    --mr-ok: #7FA36A;
+    --mr-warn: var(--sb-gold);
+    --mr-bad: #C0392B;
+    --mr-info: var(--sb-silver);
+
+    --mr-tint: var(--mr-setting-tint, 86%);
+    --mr-glass: color-mix(in srgb, var(--sb-panel) var(--mr-tint), transparent);
+    --mr-glass-strong: color-mix(in srgb, var(--sb-panel) min(100%, calc(var(--mr-tint) + 10%)), transparent);
+    --mr-glass-solid: var(--sb-panel);
+    --mr-blur: var(--mr-setting-blur, 6px);
+    --mr-glass-filter: blur(var(--mr-blur));
+    --mr-glass-edge: inset 0 0 0 1px var(--mr-line);
+    --mr-shadow-1: 0 2px 8px rgba(0, 0, 0, 0.5);
+    --mr-shadow-2: 0 14px 40px -10px rgba(0, 0, 0, 0.85);
+    --mr-shadow-3: 0 24px 70px -12px rgba(0, 0, 0, 0.95);
+
+    --mr-r: var(--mr-setting-radius, 2px);
+    --mr-r-lg: var(--mr-r);
+    --mr-r-md: var(--mr-r);
+    --mr-r-sm: var(--mr-r);
+    --mr-r-pill: var(--mr-r);
+    --mr-gap: 12px;
+
+    /* Serif display faces that ship with Windows */
+    --sb-serif: "Palatino Linotype", "Book Antiqua", Constantia, Georgia, serif;
+    --mr-font: "Segoe UI Variable Text", "Segoe UI", sans-serif;
+    --mr-font-display: var(--sb-serif);
+    --mr-font-mono: var(--sb-serif);
+
+    --mr-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --mr-ease-spring: cubic-bezier(0.34, 1.3, 0.64, 1);
+    --mr-ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+    --mr-t-1: 140ms;
+    --mr-t-2: 260ms;
+    --mr-t-3: 480ms;
+    --mr-t-4: 900ms;
+    --mr-motion: 1;
+    --mr-ambient: running;
+
+    --mr-spot-size: 280px;
+    --mr-spot: radial-gradient(var(--mr-spot-size) circle at var(--mr-mx, -999px) var(--mr-my, -999px),
+        color-mix(in srgb, #FFB347 9%, transparent), transparent 70%);
+
+    /* ---- Aliases read by the audited web/client layers ----------------- */
+    --od-1: var(--sb-gold);
+    --od-2: var(--sb-silver);
+    --od-3: var(--sb-blood);
+    --od-bg: var(--sb-bg);
+    --od-panel: var(--sb-panel);
+    --od-ink: var(--sb-bg);
+    --od-1-10: var(--sb-gold-10);
+    --od-1-20: var(--sb-gold-20);
+    --od-1-40: var(--sb-gold-35);
+    --od-1-60: var(--sb-gold-60);
+    --od-2-10: var(--sb-silver-08);
+    --od-2-20: var(--sb-silver-15);
+    --od-2-40: var(--sb-silver-30);
+    --od-3-20: var(--sb-blood-30);
+    --od-3-40: var(--sb-blood-60);
+    --od-neon-1: var(--sb-candle);
+    --od-neon-2: 0 0 10px var(--sb-silver-30);
+    --od-text-neon: 0 0 10px color-mix(in srgb, #FFB347 35%, transparent);
+    --od-chamfer: none;
+    --od-chamfer-sm: none;
+    --od-chamfer-r: none;
+    --od-slant: none;
+    --od-cut: 0px;
+    --od-cut-sm: 0px;
+}

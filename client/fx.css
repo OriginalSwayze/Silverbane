@@ -1,0 +1,48 @@
+/* ==========================================================================
+   SILVERBANE — effects driven by js/main.js
+   html.mr-js        — the script is running
+   --mr-mx / --mr-my — cursor position inside the hovered island (px)
+   ========================================================================== */
+
+/* Cursor light on the two islands, the play dock and the dock */
+html.mr-js .Library > .Container > div:not(.MainPanel)::after,
+html.mr-js .MainPanel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--mr-spot);
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0;
+    transition: opacity var(--mr-t-3);
+    mix-blend-mode: screen;
+}
+html.mr-js .Library > .Container > div:not(.MainPanel):hover::after,
+html.mr-js .MainPanel:hover::after { opacity: 1; }
+html.mr-js .Library > .Container > div:not(.MainPanel),
+html.mr-js .MainPanel { position: relative; }
+
+/* Island edge light: a hairline gradient border that brightens near the cursor */
+html.mr-js .MainPanel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(400px circle at var(--mr-mx, -999px) var(--mr-my, -999px),
+        color-mix(in oklab, var(--mr-a) 60%, transparent), transparent 60%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 51;
+}
+
+/* Page change: a soft fade when the library switches page */
+html .MainPanel .AppDetailsMain,
+html .MainPanel .LibraryHome,
+html .MainPanel .CollectionsPage,
+html .MainPanel .DownloadsPage {
+    animation: mr-fade-up var(--mr-t-3) var(--mr-ease) backwards;
+}

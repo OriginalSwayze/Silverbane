@@ -1,0 +1,179 @@
+/* ==========================================================================
+   SILVERBANE — the dock
+   Steam's bottom bar (Add a Game · Downloads · Friends & Chat) becomes a
+   single floating glass dock centered at the bottom of the window.
+   ========================================================================== */
+
+html .OuterFrame > .BottomBarContainer,
+html .OuterFrame > .BottomBar,
+html .BottomBarContainer {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+html .BottomBar {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 14px !important;
+    margin: 0 auto !important;
+    width: fit-content !important;
+    height: 52px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px !important;
+    background: transparent !important;
+    border-radius: var(--mr-r-pill) !important;
+    box-shadow: none !important;
+    isolation: isolate;
+    z-index: 20;
+    animation: mr-dock-in 800ms var(--mr-ease-spring) 250ms backwards;
+}
+/* The glass lives on ::before: a backdrop-filter on the bar itself would trap
+   the position:fixed window resize grip inside the dock. */
+html .BottomBar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--mr-glass-strong);
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+    box-shadow: var(--mr-glass-edge), var(--mr-shadow-3);
+}
+@keyframes mr-dock-in {
+    from { opacity: 0; transform: translateY(calc(30px * var(--mr-motion))) scale(calc(1 - 0.1 * var(--mr-motion))); }
+    to   { opacity: 1; transform: none; }
+}
+
+html .BottomBar :is(.AddGameButton, .DownloadStatus, .FriendsButton) {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    height: 40px !important;
+    min-width: 40px;
+    width: auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 0;
+    padding: 0 11px !important;
+    border-radius: var(--mr-r-pill) !important;
+    background: transparent !important;
+    color: var(--mr-fg-2) !important;
+    cursor: pointer;
+    transition: background-color var(--mr-t-2) var(--mr-ease), color var(--mr-t-1), gap var(--mr-t-3) var(--mr-ease);
+}
+html .BottomBar :is(.AddGameButton, .DownloadStatus, .FriendsButton):hover {
+    background: var(--mr-hover) !important;
+    color: var(--mr-fg) !important;
+    gap: 9px;
+}
+html .BottomBar :is(.AddGameButton, .DownloadStatus, .FriendsButton):active { background: var(--mr-press) !important; }
+
+/* Order inside the dock: Add · Downloads · Friends, with hairline separators */
+html .BottomBar .AddGameButton { order: 1; }
+html .BottomBar .DownloadStatus { order: 2; }
+html .BottomBar .FriendsButton { order: 3; flex-direction: row-reverse !important; }
+html .BottomBar .DownloadStatus::before,
+html .BottomBar .DownloadStatus::after {
+    content: "";
+    position: absolute;
+    top: 12px; bottom: 12px;
+    width: 1px;
+    background: var(--mr-line-2);
+}
+html .BottomBar .DownloadStatus::before { left: -4px; }
+html .BottomBar .DownloadStatus::after { right: -4px; }
+
+html .BottomBar :is(.AddGameButton, .DownloadStatus, .FriendsButton) .Icon {
+    position: static !important;
+    width: 18px !important;
+    height: 18px !important;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--mr-t-3) var(--mr-ease-spring);
+}
+html .BottomBar :is(.AddGameButton, .DownloadStatus, .FriendsButton) .Icon svg,
+html .BottomBar :is(.AddGameButton, .DownloadStatus, .FriendsButton) .Icon svg path {
+    fill: currentColor !important;
+}
+html .BottomBar .AddGameButton:hover .Icon { transform: rotate(calc(90deg * var(--mr-motion))); }
+html .BottomBar .DownloadStatus:hover .Icon { transform: translateY(calc(2px * var(--mr-motion))); }
+html .BottomBar .FriendsButton:hover .Icon { transform: scale(calc(1 + 0.12 * var(--mr-motion))); }
+
+/* Labels: slide open on hover (Layout → Dock labels → Always keeps them out) */
+html .BottomBar :is(.AddGameButton, .DownloadStatus, .FriendsButton) :is(.Text, .Queue) {
+    position: static !important;
+    display: block !important;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+    padding: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    color: inherit !important;
+    transform: none !important;
+    transition: max-width var(--mr-t-3) var(--mr-ease), opacity var(--mr-t-2) var(--mr-ease);
+}
+html .BottomBar :is(.AddGameButton, .DownloadStatus, .FriendsButton):hover :is(.Text, .Queue) {
+    max-width: 180px;
+    opacity: 1;
+}
+
+/* An active download: the dock segment shows a live gradient progress */
+html .BottomBar .DownloadStatus .DownloadStatusContent { background: transparent !important; }
+html .BottomBar .DownloadStatus .DetailedDownloadProgress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent !important;
+}
+html .BottomBar .DownloadStatus .DetailedDownloadProgress .StatusLine,
+html .BottomBar .DownloadStatus .DetailedDownloadProgress .StatusLine * {
+    color: var(--mr-fg-2) !important;
+    font-size: 11.5px !important;
+}
+html .BottomBar .DownloadStatus .DetailedDownloadProgress .Percentage {
+    font-family: var(--mr-font-mono);
+    color: var(--mr-accent-text) !important;
+}
+html .BottomBar .DownloadStatus .DetailedDownloadProgress .ProgressBarWrapper {
+    width: 120px !important;
+    height: 4px !important;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.08) !important;
+    overflow: hidden;
+}
+html .BottomBar .DownloadStatus .DetailedDownloadProgress .ProgressBar {
+    background: var(--mr-grad-loop) !important;
+    background-size: 200% 100% !important;
+    animation: mr-grad-pan 2.5s linear infinite;
+    animation-play-state: var(--mr-ambient);
+}
+
+/* The friends button's online count / status dot */
+html .BottomBar .FriendsButton .FriendsCount,
+html .BottomBar .FriendsButton [class*="Count"] {
+    font-family: var(--mr-font-mono);
+    color: var(--mr-ok) !important;
+}
+
+/* Steam's window resize grip lives inside the bottom bar: pin it back to the corner */
+html .BottomBar .window_resize_grip {
+    position: fixed !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+    opacity: 0.35;
+}

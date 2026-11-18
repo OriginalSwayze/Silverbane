@@ -1,0 +1,3 @@
+/* Hour of the day: Off */
+:root { --od-hud: off; }
+html .od-hud { display: none !important; }

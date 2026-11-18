@@ -1,0 +1,83 @@
+/* ==========================================================================
+   SILVERBANE — base: type, selection, scrollbars and the keyframes every
+   window uses. Motion is slow and weighty: candle flicker, ink bleeding in,
+   embers rising, fog drifting.
+   ========================================================================== */
+
+html, body {
+    font-family: var(--mr-font) !important;
+    -webkit-font-smoothing: antialiased;
+    color: var(--mr-fg);
+}
+:where(button, input, textarea, select) { font-family: inherit; }
+
+::selection { background: var(--sb-blood); color: var(--sb-parch); }
+:where(:focus-visible) { outline: 1px solid var(--sb-gold); outline-offset: 2px; }
+
+/* Scrollbars: a thin engraved groove with a silver bead */
+::-webkit-scrollbar { width: 10px; height: 10px; background: transparent; }
+::-webkit-scrollbar-track { background: linear-gradient(90deg, transparent 4px, var(--mr-line) 4px, var(--mr-line) 5px, transparent 5px); }
+::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, transparent 2px, var(--sb-silver-30) 2px, var(--sb-silver-30) 8px, transparent 8px);
+    min-height: 40px;
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(90deg, transparent 2px, var(--sb-gold) 2px, var(--sb-gold) 8px, transparent 8px); }
+::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+
+/* -------------------------------------------------------------------------
+   Keyframes (names shared with the component files)
+   ------------------------------------------------------------------------- */
+/* Ink bleeding in: fade + slight rise + unblur */
+@keyframes mr-fade-up {
+    from { opacity: 0; transform: translateY(calc(8px * var(--mr-motion))); filter: blur(calc(3px * var(--mr-motion))); }
+    to   { opacity: 1; transform: none; filter: none; }
+}
+@keyframes mr-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes mr-pop {
+    from { opacity: 0; transform: translateY(calc(-4px * var(--mr-motion))) scaleY(calc(1 - 0.04 * var(--mr-motion))); }
+    to   { opacity: 1; transform: none; }
+}
+@keyframes mr-sheen {
+    0%   { transform: translateX(-120%) skewX(-20deg); }
+    55%, 100% { transform: translateX(380%) skewX(-20deg); }
+}
+/* Ember glow that swells and settles */
+@keyframes mr-breathe {
+    0%, 100% { box-shadow: inset 0 0 0 1px var(--sb-gold-60), 0 0 14px color-mix(in srgb, #FF7A1A 22%, transparent); }
+    50%      { box-shadow: inset 0 0 0 1px var(--sb-gold), 0 0 28px color-mix(in srgb, #FF7A1A 40%, transparent); }
+}
+@keyframes mr-grad-pan { from { background-position: 0% 50%; } to { background-position: 200% 50%; } }
+@keyframes mr-spin { to { transform: rotate(360deg); } }
+
+/* Candle flame: small, irregular brightness changes (never a flash) */
+@keyframes sb-candle {
+    0%, 100% { opacity: 1; }
+    12% { opacity: 0.92; } 27% { opacity: 0.98; } 41% { opacity: 0.9; }
+    58% { opacity: 1; } 73% { opacity: 0.94; } 88% { opacity: 0.97; }
+}
+@keyframes sb-glow-text {
+    0%, 100% { text-shadow: 0 0 8px color-mix(in srgb, #FFB347 25%, transparent); }
+    50%      { text-shadow: 0 0 16px color-mix(in srgb, #FFB347 45%, transparent); }
+}
+@keyframes sb-fog-a { from { transform: translate3d(-12%, 0, 0); } to { transform: translate3d(12%, 0, 0); } }
+@keyframes sb-fog-b { from { transform: translate3d(10%, 2%, 0); } to { transform: translate3d(-10%, -2%, 0); } }
+@keyframes sb-embers {
+    from { background-position: 0 0, 0 0, 0 0; }
+    to   { background-position: 40px -900px, -60px -1300px, 20px -700px; }
+}
+@keyframes sb-rule-draw { from { transform: scaleX(0); opacity: 0; } to { transform: scaleX(1); opacity: 1; } }
+@keyframes sb-sigil { to { transform: rotate(360deg); } }
+@keyframes sb-sigil-rev { to { transform: rotate(-360deg); } }
+
+/* Names used by the shared audited layers: kept, but made gentle here */
+@keyframes od-flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.94; } }
+@keyframes od-glitch-text { 0%, 100% { text-shadow: none; } 50% { text-shadow: 0 0 10px color-mix(in srgb, #FFB347 40%, transparent); } }
+@keyframes od-glitch-slice { from { opacity: 0.6; } to { opacity: 1; } }
+@keyframes od-glitch-idle { 0%, 100% { opacity: 1; } }
+@keyframes od-march { to { background-position: 24px 0; } }
+@keyframes od-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.3; } }
+
+@media (prefers-reduced-motion: reduce) {
+    :root { --mr-motion: 0; --mr-ambient: paused; }
+}

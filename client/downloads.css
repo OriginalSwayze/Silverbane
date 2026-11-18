@@ -1,0 +1,40 @@
+/* ==========================================================================
+   SILVERBANE — Downloads page
+   ========================================================================== */
+
+html .DownloadsPage,
+html .DownloadsPage .DownloadsHeader,
+html .DownloadsPage > div {
+    background: transparent !important;
+}
+
+/* The header graph area */
+html .DownloadsPage .DownloadsHeader,
+html .DownloadsPage [class*="Graph"] {
+    border-radius: var(--mr-r-lg) !important;
+}
+
+/* Section titles ("Up Next", "Completed") */
+html .DownloadsPage .SectionHeader,
+html .DownloadsPage h2 {
+    font-family: var(--mr-font-display) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em !important;
+    text-transform: none !important;
+    color: var(--mr-fg) !important;
+}
+
+/* Rows as cards */
+html .DownloadsPage .DownloadItem,
+html .DownloadsPage [class*="DownloadItem"] {
+    border-radius: var(--mr-r) !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line);
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: background-color var(--mr-t-1), transform var(--mr-t-2) var(--mr-ease);
+    animation: mr-fade-up var(--mr-t-3) var(--mr-ease) backwards;
+}
+html .DownloadsPage [class*="DownloadItem"]:hover {
+    background: rgba(255, 255, 255, 0.055) !important;
+}

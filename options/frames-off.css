@@ -1,0 +1,2 @@
+/* Gilded frames: Off — plain hairline panels */
+:root { --sb-frame: linear-gradient(transparent, transparent); }

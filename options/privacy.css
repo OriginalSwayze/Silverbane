@@ -1,0 +1,6 @@
+/* Privacy: Blur — account name and wallet are blurred until hovered */
+html .TitleBarControls .AccountMenu > :not(.avatarHolder):not(svg) {
+    filter: blur(6px);
+    transition: filter var(--mr-t-2);
+}
+html .TitleBarControls .AccountMenu:hover > :not(.avatarHolder):not(svg) { filter: none; }

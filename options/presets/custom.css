@@ -1,0 +1,7 @@
+/* SILVERBANE palette: Custom — the four colors on the Colors page */
+:root {
+    --sb-p-silver: var(--sb-user-silver);
+    --sb-p-gold: var(--sb-user-gold);
+    --sb-p-blood: var(--sb-user-blood);
+    --sb-p-bg: var(--sb-user-bg);
+}

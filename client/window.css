@@ -1,0 +1,362 @@
+/* ==========================================================================
+   SILVERBANE — window chrome
+   One slim command strip on top: the "Steam / View / Friends / Games / Help"
+   menus on the left, a floating pill navigator in the middle, account
+   controls and window buttons on the right.
+   ========================================================================== */
+
+/* ---- Top bar: one row, title bar and navigator merged ------------------- */
+html .OuterFrame > .TopBar {
+    position: relative;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    height: 52px !important;
+    min-height: 52px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+html .TopBar > .TitleBar {
+    position: absolute !important;
+    inset: 0 0 auto 0;
+    height: 52px !important;
+    background: transparent !important;
+    align-items: center;
+    pointer-events: none;           /* the empty strip stays draggable */
+}
+html .TopBar > .TitleBar > * { pointer-events: auto; }
+
+html .TopBar > .SuperNavBar {
+    position: absolute !important;
+    inset: 0 auto auto 50%;
+    transform: translateX(-50%);
+    height: 52px !important;
+    background: transparent !important;
+    border: none !important;
+    z-index: 2;
+    width: auto !important;
+}
+
+/* ---- Root menus (Steam, View, Friends, Games, Help) --------------------- */
+html .RootMenuBar {
+    height: 52px !important;
+    align-items: center !important;
+    padding-left: 10px;
+    gap: 2px;
+}
+
+html .RootMenuBar .RootMenuButton {
+    height: 30px !important;
+    display: flex !important;
+    align-items: center;
+    padding: 0 11px !important;
+    border-radius: var(--mr-r-pill);
+    color: var(--mr-fg-3) !important;
+    font-size: 12.5px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em;
+    text-transform: none !important;
+    transition: color var(--mr-t-1), background-color var(--mr-t-2) var(--mr-ease);
+}
+html .RootMenuBar .RootMenuButton:hover,
+html .RootMenuBar .RootMenuButton.MenuOpen,
+html .RootMenuBar .RootMenuButton:has(.MenuOpen) {
+    color: var(--mr-fg) !important;
+    background: var(--mr-hover) !important;
+}
+
+/* The Steam logo button becomes the Silverbane mark: a gradient orb */
+html .RootMenuBar .RootMenuButton .SteamButton {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    width: auto !important;
+    background: none !important;
+    font-size: 0 !important;        /* hides Steam's "Steam" text node */
+}
+html .RootMenuBar .RootMenuButton .SteamButton svg { display: none !important; }
+html .RootMenuBar .RootMenuButton .SteamButton::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: conic-gradient(from 210deg, var(--mr-a), var(--mr-b), var(--mr-c), var(--mr-a));
+    box-shadow: 0 0 14px -2px var(--mr-b), inset 0 0 0 3px rgba(6, 7, 11, 0.55);
+    animation: mr-spin 14s linear infinite;
+    animation-play-state: var(--mr-ambient);
+}
+html .RootMenuBar .RootMenuButton .SteamButton::after {
+    content: "Silverbane";
+    font-family: var(--mr-font-display);
+    font-weight: 650;
+    font-size: 13.5px;
+    letter-spacing: 0.02em;
+    color: var(--mr-fg);
+}
+
+/* ---- Pill navigator (Store / Library / Community / You) ----------------- */
+html .SuperNavBar .SuperNav {
+    position: relative;
+    display: flex !important;
+    align-items: center;
+    gap: 2px;
+    height: 38px;
+    margin-top: 7px;
+    padding: 4px !important;
+    background: var(--mr-glass-strong) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+    border-radius: var(--mr-r-pill);
+    box-shadow: var(--mr-glass-edge), var(--mr-shadow-1);
+    width: auto !important;
+}
+
+/* Back / forward arrows live inside the pill, at its left */
+html .SuperNav > svg.Arrow {
+    box-sizing: border-box;
+    width: 28px !important;
+    height: 28px !important;
+    padding: 6px;
+    border-radius: 50%;
+    margin: 0 !important;
+    position: static !important;
+    transition: background-color var(--mr-t-1), opacity var(--mr-t-2);
+}
+html .SuperNav > svg.Arrow.Enabled:hover { background: var(--mr-hover); }
+html .SuperNav > svg.Arrow.Disabled { opacity: 0.25; }
+html .SuperNav > svg.Arrow + .SuperNavMenu,
+html .SuperNav > svg.Arrow:nth-of-type(2) { margin-right: 6px !important; }
+
+html .SuperNav .SuperNavMenu {
+    position: relative;
+    height: 30px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+html .SuperNav .SuperNavMenu > .MenuButton {
+    height: 30px !important;
+    display: flex !important;
+    align-items: center;
+    padding: 0 16px !important;
+    margin: 0 !important;
+    border-radius: var(--mr-r-pill);
+    font-family: var(--mr-font-display) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.02em !important;
+    text-transform: none !important;
+    color: var(--mr-fg-3) !important;
+    background: transparent !important;
+    border: none !important;
+    transition: color var(--mr-t-2) var(--mr-ease), background-color var(--mr-t-2) var(--mr-ease);
+}
+html .SuperNav .SuperNavMenu > .MenuButton::before,
+html .SuperNav .SuperNavMenu > .MenuButton::after { display: none !important; }
+
+html .SuperNav .SuperNavMenu:hover > .MenuButton {
+    color: var(--mr-fg) !important;
+    background: var(--mr-hover) !important;
+}
+
+/* Selected tab: when the JS indicator is present it glides between tabs;
+   otherwise the tab paints its own gradient pill. */
+html .SuperNav .SuperNavMenu.Selected > .MenuButton {
+    color: var(--mr-on-accent) !important;
+    background: var(--mr-grad) !important;
+    background-size: 200% 100% !important;
+    box-shadow: 0 6px 20px -6px color-mix(in oklab, var(--mr-b) 70%, transparent);
+}
+html.mr-js .SuperNav .SuperNavMenu.Selected > .MenuButton {
+    background: transparent !important;
+    box-shadow: none;
+}
+html .SuperNav .mr-nav-indicator {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    height: 30px;
+    width: 0;
+    border-radius: var(--mr-r-pill);
+    background: var(--mr-grad-loop);
+    background-size: 200% 100%;
+    box-shadow: 0 6px 22px -6px color-mix(in oklab, var(--mr-b) 75%, transparent),
+                inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transition: transform var(--mr-t-3) var(--mr-ease-spring), width var(--mr-t-3) var(--mr-ease);
+    animation: mr-grad-pan 8s linear infinite;
+    animation-play-state: var(--mr-ambient);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ---- Right-side controls: news, bell, account, Big Picture -------------- */
+html .TitleBarControls {
+    height: 52px !important;
+    align-items: center !important;
+    gap: 6px;
+    margin-right: 6px;
+}
+
+html .TitleBarControls .Button,
+html .TitleBarControls .AccountMenu {
+    height: 32px !important;
+    min-width: 32px;
+    border-radius: var(--mr-r-pill) !important;
+    background: var(--mr-glass) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+    box-shadow: var(--mr-glass-edge);
+    border: none !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--mr-t-2) var(--mr-ease), transform var(--mr-t-2) var(--mr-ease-spring), box-shadow var(--mr-t-2);
+}
+html .TitleBarControls .Button { padding: 0 12px !important; }
+html .TitleBarControls .Button:hover,
+html .TitleBarControls .AccountMenu:hover {
+    background: var(--mr-hover) !important;
+    transform: translateY(calc(-1px * var(--mr-motion)));
+    box-shadow: var(--mr-glass-edge), var(--mr-shadow-1);
+}
+html .TitleBarControls .Button svg,
+html .TitleBarControls .Button svg path { fill: var(--mr-fg-2) !important; color: var(--mr-fg-2) !important; }
+html .TitleBarControls .Button:hover svg,
+html .TitleBarControls .Button:hover svg path { fill: var(--mr-fg) !important; }
+
+/* News with unread items: an accent dot that pulses */
+html .TitleBarControls .Button.Active {
+    background: var(--mr-accent-14) !important;
+    box-shadow: inset 0 0 0 1px var(--mr-accent-40);
+}
+html .TitleBarControls .Button.Active svg,
+html .TitleBarControls .Button.Active svg path { fill: var(--mr-accent-text) !important; }
+
+/* Account pill */
+html .TitleBarControls .AccountMenu {
+    padding: 0 12px 0 4px !important;
+    gap: 8px;
+    color: var(--mr-fg) !important;
+    font-weight: 600;
+    font-size: 12.5px;
+}
+html .TitleBarControls .AccountMenu .avatarHolder,
+html .TitleBarControls .AccountMenu img.avatar {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 50% !important;
+}
+html .TitleBarControls .AccountMenu .avatarHolder {
+    box-shadow: 0 0 0 2px var(--mr-ok);
+}
+html .TitleBarControls .AccountMenu .avatarStatus { display: none !important; }
+html .TitleBarControls .AccountMenu .WalletBalance {
+    font-family: var(--mr-font-mono);
+    font-size: 11.5px;
+    color: var(--mr-accent-text) !important;
+    padding: 2px 8px;
+    border-radius: var(--mr-r-pill);
+    background: var(--mr-accent-08);
+}
+html .TitleBarControls .AccountMenu svg.Chevron { opacity: 0.6; }
+
+/* ---- Window buttons ---------------------------------------------------- */
+html .TitleBar .WindowControls,
+html .TitleBar .title-bar-actions {
+    height: 52px !important;
+    align-items: center !important;
+    background: transparent !important;
+}
+html .TitleBar .title-bar-actions { gap: 4px; padding-right: 10px; max-height: none !important; }
+html .WindowControls > .title-area {
+    height: 52px !important;
+    display: flex !important;
+    align-items: center;
+    background: transparent !important;
+}
+html .TitleBarControls .Button > svg,
+html .TitleBarControls .Button > div { margin: auto; display: block; }
+html .TitleBarControls .tool-tip-source { display: flex; align-items: center; }
+html .TitleBar .title-bar-actions .title-area-icon {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--mr-t-1), transform var(--mr-t-2) var(--mr-ease-spring);
+}
+html .TitleBar .title-bar-actions .title-area-icon:hover {
+    background: var(--mr-hover) !important;
+    transform: scale(calc(1 + 0.06 * var(--mr-motion)));
+}
+html .TitleBar .title-bar-actions .title-area-icon.closeButton:hover {
+    background: var(--mr-bad) !important;
+}
+html .TitleBar .title-bar-actions .title-area-icon svg { width: 12px; height: 12px; }
+html .TitleBar .title-bar-actions .title-area-icon svg path,
+html .TitleBar .title-bar-actions .title-area-icon svg line,
+html .TitleBar .title-bar-actions .title-area-icon svg rect {
+    stroke: var(--mr-fg-2);
+}
+html .TitleBar .title-area-highlight { display: none !important; }
+
+/* ---- Content frame: everything below the top bar ----------------------- */
+html .OuterFrame > .ContentFrame {
+    animation: mr-fade-in var(--mr-t-3) var(--mr-ease) backwards;
+}
+
+/* ---- Bottom alerts ("Steam has been updated", etc.) --------------------- */
+html .OuterFrame > .Alert { background: transparent !important; }
+html .OuterFrame > .Alert {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
+    width: min(760px, calc(100% - 40px)) !important;
+    bottom: 84px !important;
+    z-index: 30;
+}
+html .OuterFrame > .Alert .ActionAlert {
+    background: var(--mr-glass-strong) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+    border-radius: var(--mr-r) !important;
+    box-shadow: var(--mr-glass-edge), var(--mr-shadow-3) !important;
+    border: none !important;
+    animation: mr-fade-up var(--mr-t-3) var(--mr-ease) backwards;
+}
+html .OuterFrame > .Alert .ActionAlert::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    border-radius: 3px;
+    background: var(--mr-grad);
+}
+html .OuterFrame > .Alert .AlertButton {
+    border-radius: var(--mr-r-pill) !important;
+    background: var(--mr-hover) !important;
+    color: var(--mr-fg) !important;
+    transition: background-color var(--mr-t-1);
+}
+html .OuterFrame > .Alert .AlertButton:hover { background: var(--mr-press) !important; }
+html .OuterFrame > .Alert .AlertButton:first-child {
+    background: var(--mr-grad) !important;
+    color: var(--mr-on-accent) !important;
+}
+
+/* Big Picture button: Steam positions its icon absolutely near the top */
+html .TitleBarControls .Button { position: relative; }
+html .TitleBarControls .GamepadUIToggle > svg,
+html .TitleBarControls .GamepadUIToggle > * {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+    margin: 0 !important;
+}

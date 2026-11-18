@@ -1,0 +1,3 @@
+/* Motion: Calm — hovers and transitions stay; ambient motion stops */
+:root { --mr-ambient: paused; }
+html .PlayButton.ButtonChild::after { display: none !important; }

@@ -1,0 +1,3 @@
+/* Night: Moonless — plain black, no fog or embers */
+html::before { background: var(--sb-bg) !important; animation: none !important; }
+html::after, body::before { display: none !important; }

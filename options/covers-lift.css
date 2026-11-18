@@ -1,0 +1,6 @@
+/* Cover hover: Lift — rise and glow, no 3D */
+:root { --mr-tilt: off; }
+html .LibraryItemBox:hover {
+    transform: translateY(calc(-6px * var(--mr-motion))) scale(calc(1 + 0.03 * var(--mr-motion))) !important;
+}
+html .LibraryItemBox::after { display: none !important; }
