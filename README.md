@@ -52,10 +52,10 @@ by a few percent.
 
 ## Install
 
-1. Install [Millennium](https://steambrew.app).
-2. Install Silverbane from the [theme gallery](https://steambrew.app/themes), or clone this repo into
-   `Steam/millennium/themes/Silverbane`.
-3. In Steam, open **Millennium → Themes** and select **Silverbane**.
+- **With [Beyond Steam](https://github.com/OriginalSwayze/Beyond-Steam) (easiest):** in Steam press **Ctrl+Shift+B**, open
+  **Get more** and install **Silverbane**.
+- **By hand:** download **Silverbane.zip** from the [latest release](https://github.com/OriginalSwayze/Silverbane/releases/latest) and unzip
+  it into `%APPDATA%\Beyond Steam\themes\Silverbane` (Beyond Steam) or `Steam\millennium\themes\Silverbane` (Millennium).
 
 ## Notes
 
